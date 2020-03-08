@@ -34,9 +34,18 @@ $('#analyze_word').keyup(function(e){
     }
 });
 
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 function analyze_word(word) {
 	// $('#data_view').html('<b>' + word + '</b>');
 	make_slopegraph(word);
+	// sleep(500);
 	make_linegraph(word);
 }
 

@@ -177,7 +177,7 @@ max_rank = 25;
                 svg.append('text')
                     .attr({
                         class: 's-title',
-                        x: ((w / sets) * (n+1))  + 25,
+                        x: ((w / sets) * (n+1))  + 15 + 25 + 10,
                         y: margin.top/2
                     })
                     .text(keyValues[n+1] + ' ↓')
@@ -210,7 +210,8 @@ max_rank = 25;
 								})
 								.on('click',function(d) {
 									//console.log('clicky');
-									make_slopegraph(d[keyName]);
+									//make_slopegraph(d[keyName]);
+                  analyze_word(d[keyName]);
 								});
 
             // title
@@ -251,7 +252,8 @@ max_rank = 25;
 								})
 								.on('click',function(d) {
 									//console.log('clicky');
-									make_slopegraph(d[keyName]);
+									// make_slopegraph(d[keyName]);
+                  analyze_word(d[keyName]);
 								});
 
             // title
