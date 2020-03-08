@@ -21,8 +21,8 @@ function make_slopegraph(word) {
     var data,
         // keys values from data to be applied
         //keyValues = ['1850', '2002', '2004', '2006', '2008', '2010', '2012'];
-				// keyValues = [1800, 1850, 1900, 1950];
-				keyValues = ['1800-1849', '1850-1899', '1900-1949', '1950-1999'];
+				keyValues = [1800, 1850, 1900, 1950];
+				// keyValues = ['1800-1849', '1850-1899', '1900-1949', '1950-1999'];
 
     // store chart
     var slopegraph;
@@ -39,6 +39,7 @@ function make_slopegraph(word) {
     };
 
     d3.json('/static/data/db/ranks/COHA_v2/'+word+'.json', function(error, json) {
+			console.log('hi?',json);
         if (error) throw error;
         // access data outside this callback
         data = json;

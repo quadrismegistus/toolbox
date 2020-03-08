@@ -84,7 +84,7 @@ max_rank = 25;
 
         // render connecting lines
         function lines(data, n) {
-					console.log(n,data);
+					// console.log(n,data);
 
             var lines = svg.selectAll('.s-line-' + n)
                 .data(data);
@@ -114,7 +114,7 @@ max_rank = 25;
             })
             .on('mouseover', dispatch._hover)
 						.on("mouseout",function(){
-  							console.log('gone!');
+  							// console.log('gone!');
 								// resetSelection();
 								d3.selectAll('.elm').transition().style('opacity', 1);
 				        d3.selectAll('.navAlt').transition().style('opacity', 1);
