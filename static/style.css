@@ -204,7 +204,7 @@ p {
   padding-top: 0;
   margin-top: 0;
   font-size: 13px;
-  max-width: 600px;
+  /* max-width: 600px; */
 }
 h1 {
   font-size: 18px;

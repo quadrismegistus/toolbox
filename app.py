@@ -16,6 +16,12 @@ def analyze_word(word=None):
 
 
 
+
+@app.route('/about')
+def index():
+	return render_template('about.html')
+
+
 @app.route('/manifestos')
 def manifestos():
     return render_template('manifestos.html')
