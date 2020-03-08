@@ -2,6 +2,7 @@ from flask import render_template, flash, redirect, request, session, g
 from flask_socketio import emit
 from app import app,socketio
 from .forms import LoginForm
+from webprosodic import WebText,json2meter,get_meter,check_constraint,default_meter
 import time
 
 import gevent
@@ -35,7 +36,7 @@ app.jinja_env.globals.update(check_constraint=web_check_constraint)
 
 @app.before_request
 def before_request():
-	print('>> new request @ %s coming from %s' % (now(), request.remote_addr))
+	print '>> new request @ %s coming from %s' % (now(), request.remote_addr)
 	check_session(session)
 	#print session['meter']
 	# print '-----'
@@ -60,8 +61,8 @@ def meter():
 
 @app.route('/meter',methods=['POST'])
 def meter_post():
-	print(request.form['csrf_token'])
-	print(list(request.form.items()))
+	print request.form['csrf_token']
+	print request.form.items()
 	return render_template('meter_form2.html')
 
 
@@ -70,14 +71,14 @@ def meter_post():
 @socketio.on('parse_meter_form')
 def parse_meter_form(msg):
 	meter_config=json2meter(msg['data'])
-	print('>> updating meter to:',meter_config)
+	print '>> updating meter to:',meter_config
 	session['meter']=meter_config
-	print(list(session.items()))
+	print session.items()
 
 @socketio.on('remove_constraint')
 def remove_constraint(msg):
 	constraint=msg['data']
-	print('>> removing constraint:',constraint)
+	print '>> removing constraint:',constraint
 	if not 'meter' in session: return
 	meter_config = session['meter']
 	if constraint in meter_config['constraints']: meter_config['constraints'].remove(constraint)
@@ -90,11 +91,11 @@ def parse_text(data,meter='meter_arto',row_buffer=1,cache_result=True):
 	text=data['data']
 	#print 'received message: "%s"' % text
 
-	print(list(session.items()))
+	print session.items()
 
 	t = WebText(text)
 	t.meter = get_meter(session)
-	print(t.meter)
+	print t.meter
 	columns=t.meter2columns()
 	columns_data = [{'title':col} for col in columns]
 	if cache_result: session['parsed_rows']=[]
@@ -112,5 +113,5 @@ def parse_text(data,meter='meter_arto',row_buffer=1,cache_result=True):
 
 @socketio.on('save_text_stats')
 def stats_text(data):
-	print(session['parsed_rows'][0])
+	print session['parsed_rows'][0]
 ###
