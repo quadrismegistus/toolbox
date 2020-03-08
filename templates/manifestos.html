@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Fredrik Danielsson, http://lostkeys.se">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex" />
+    <title>Cambridge Keydata</title>
+  <link rel="stylesheet" href="/static/themes/bitsandpieces/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/static/themes/bitsandpieces/styles/highlightjs-github.css" type="text/css" />
+  </head>
+<body>
+
+<aside class="main-nav">
+<nav>
+  <ul>
+      </ul>
+</nav>
+</aside>
+
+<main class="main-content">
+  <article class="article">
+    <h1>Cambridge Keydata: Manifesto Project</h1>
+
+
+<h2>Modeling usage differences</h2>
+<ul>
+<li><a href="https://public.tableau.com/views/WordusagedifferencesinLabourvsTorymanifestos/QualitativevsQuantitativeDistancesperwordinmanifestos?:display_count=y&amp;publish=yes&amp;:origin=viz_share_link">Word usage differences in Labour vs Tory manifestos</a></li>
+</ul>
+
+
+    <h2>Network graphs (Feb 22)</h2>
+<h3><a href="https://public.tableau.com/views/NodestatisticsforLabourandToryIdeographs/Nodestats-all-horizontal?:display_count=y&amp;publish=yes&amp;:origin=viz_share_link">Node statistics</a></h3>
+<h3>Network structure statistics</h3>
+<p>These are using the model trained on the Tory and Labour manifestos themselves.</p>
+<h4>Number of subgraphs ("islands")</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel_V2/plot.num_subgraphs.png" alt="num_subgraphs" /></p>
+<h4>Number of edges</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel_V2/plot.num_edges.png" alt="num_edges" /></p>
+<h4>Density</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel_V2/plot.density.png" alt="density" /></p>
+<h4>Clustering coefficient</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel_V2/plot.clustering_coefficient_global.png" alt="clustering_coefficient_global" /></p>
+<h2>Underlying graphs</h2>
+<table>
+<thead>
+<tr>
+<th>Party</th>
+<th>Year</th>
+<th>Node sizing</th>
+<th>Graphs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labour</td>
+<td>1964</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1964_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1964_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1964</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1964_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1964_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1966</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1966_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1966_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1966</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1966_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1966_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1970</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1970_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1970_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1970</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1970_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1970_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1974</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1974_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1974_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1974</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1974_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1974_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1979</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1979_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1979_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1979</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1979_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1979_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1983</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1983_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1983_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1983</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1983_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1983_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1987</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1987_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1987_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1987</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1987_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1987_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1992</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1992_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1992_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1992</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1992_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1992_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1997</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1997_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1997_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1997</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1997_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_1997_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2001</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2001_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2001_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2001</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2001_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2001_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2005</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2005_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2005_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2005</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2005_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2005_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2015</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2015_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2015_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2015</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2015_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2015_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2017</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2017_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2017_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2017</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2017_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Labour_2017_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1964</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1964_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1964_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1964</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1964_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1964_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1966</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1966_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1966_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1966</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1966_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1966_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1970</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1970_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1970_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1970</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1970_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1970_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1974</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1974_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1974_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1974</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1974_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1974_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1979</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1979_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1979_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1979</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1979_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1979_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1983</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1983_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1983_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1983</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1983_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1983_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1987</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1987_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1987_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1987</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1987_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1987_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1992</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1992_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1992_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1992</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1992_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1992_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1997</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1997_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1997_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1997</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1997_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_1997_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2001</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2001_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2001_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2001</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2001_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2001_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2005</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2005_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2005_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2005</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2005_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2005_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2015</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2015_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2015_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2015</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2015_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2015_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2017</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2017_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2017_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2017</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2017_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel_V2/graph_Tory_2017_G2_BC.html">G2</a>]</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Network graphs (Feb 19)</h2>
+<h3>Network structure statistics</h3>
+<p>These are using the model trained on the Tory and Labour manifestos themselves.</p>
+<h4>Number of subgraphs ("islands")</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel/plot.num_subgraphs.png" alt="num_subgraphs" /></p>
+<h4>Number of edges</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel/plot.num_edges.png" alt="num_edges" /></p>
+<h4>Density</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel/plot.density.png" alt="density" /></p>
+<h4>Clustering coefficient</h4>
+<p><img src="/static/data/assets/network_data/top100_manifestomodel/plot.clustering_coefficient_global.png" alt="clustering_coefficient_global" /></p>
+<h3>New networks using word2vec model trained on manifestos themselves</h3>
+<table>
+<thead>
+<tr>
+<th>Party</th>
+<th>Year</th>
+<th>Node sizing</th>
+<th>Graphs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labour</td>
+<td>1964</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1964_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1964_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1964</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1964_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1964_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1966</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1966_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1966_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1966</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1966_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1966_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1970</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1970_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1970_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1970</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1970_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1970_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1974</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1974_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1974_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1974</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1974_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1974_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1979</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1979_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1979_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1979</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1979_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1979_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1983</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1983_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1983_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1983</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1983_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1983_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1987</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1987_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1987_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1987</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1987_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1987_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1992</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1992_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1992_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1992</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1992_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1992_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1997</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1997_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1997_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>1997</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1997_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_1997_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2001</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2001_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2001_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2001</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2001_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2001_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2005</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2005_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2005_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2005</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2005_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2005_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2015</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2015_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2015_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2015</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2015_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2015_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2017</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2017_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2017_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Labour</td>
+<td>2017</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2017_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Labour_2017_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1964</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1964_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1964_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1964</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1964_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1964_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1966</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1966_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1966_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1966</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1966_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1966_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1970</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1970_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1970_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1970</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1970_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1970_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1974</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1974_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1974_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1974</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1974_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1974_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1979</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1979_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1979_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1979</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1979_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1979_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1983</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1983_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1983_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1983</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1983_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1983_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1987</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1987_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1987_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1987</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1987_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1987_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1992</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1992_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1992_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1992</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1992_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1992_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1997</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1997_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1997_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>1997</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1997_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_1997_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2001</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2001_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2001_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2001</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2001_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2001_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2005</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2005_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2005_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2005</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2005_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2005_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2015</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2015_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2015_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2015</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2015_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2015_G2_BC.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2017</td>
+<td>Frequency</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2017_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2017_G2.html">G2</a>]</td>
+</tr>
+<tr>
+<td>Tory</td>
+<td>2017</td>
+<td>Betweenness Centrality</td>
+<td>[<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2017_G1_BC.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manifestomodel/graph_Tory_2017_G2_BC.html">G2</a>]</td>
+</tr>
+</tbody>
+</table>
+<h2>Network graphs</h2>
+<p>Network graphs for experiment on using semantic vectors to find underlying semantic topography of a text.</p>
+<p>All graphs built so far on the 1990s Google Books word2vec model. The number of "synonyms" in each case is 10. The top 100 nouns from each text were taken.</p>
+<h3>Labour vs. Tory (2019)</h3>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Node sizing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labour manifesto [<a href="/static/data/assets/networks/graph_labour_manifesto_G1.html">G1</a>] [<a href="/static/data/assets/networks/graph_labour_manifesto_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Tory manifesto [<a href="/static/data/assets/networks/graph_tory_manifesto_G1.html">G1</a>] [<a href="/static/data/assets/networks/graph_tory_manifesto_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+</tbody>
+</table>
+<h3>Labour (1964-2017) vs. Tory (1964-2019)</h3>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Node sizing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labour manifestos [<a href="/static/data/assets/network_data/top100_manymanifesto/graph_labour_manifestos_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manymanifesto/graph_labour_manifestos_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Tory manifestos [<a href="/static/data/assets/network_data/top100_manymanifesto/graph_tory_manifestos_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manymanifesto/graph_tory_manifestos_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Labour manifestos [<a href="/static/data/assets/network_data/top100_manymanifesto_betweenness/graph_labour_manifestos_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manymanifesto_betweenness/graph_labour_manifestos_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+<tr>
+<td>Tory manifestos [<a href="/static/data/assets/network_data/top100_manymanifesto_betweenness/graph_tory_manifestos_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_manymanifesto_betweenness/graph_tory_manifestos_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+</tbody>
+</table>
+<h3>Labour (1964-1997) vs. Labour (2001-2017)</h3>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Node sizing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labour manifestos (1964-1997) [<a href="/static/data/assets/network_data/top100_historical/graph_labour_manifestos_C20_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical/graph_labour_manifestos_C20_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Labour manifestos (2001-2017) [<a href="/static/data/assets/network_data/top100_historical/graph_labour_manifestos_C21_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical/graph_labour_manifestos_C21_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Labour manifestos (1964-1997) [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_labour_manifestos_C20_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_labour_manifestos_C20_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+<tr>
+<td>Labour manifestos (2001-2017) [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_labour_manifestos_C21_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_labour_manifestos_C21_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+</tbody>
+</table>
+<h3>Tory (1964-1997) vs. Tory (2001-2017)</h3>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Node sizing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tory manifestos (1964-1997) [<a href="/static/data/assets/network_data/top100_historical/graph_tory_manifestos_C20_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical/graph_tory_manifestos_C20_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Tory manifestos (2001-2017) [<a href="/static/data/assets/network_data/top100_historical/graph_tory_manifestos_C21_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical/graph_tory_manifestos_C21_G2.html">G2</a>]</td>
+<td>Frequency</td>
+</tr>
+<tr>
+<td>Tory manifestos (1964-1997) [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_tory_manifestos_C20_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_tory_manifestos_C20_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+<tr>
+<td>Tory manifestos (2001-2017) [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_tory_manifestos_C21_G1.html">G1</a>] [<a href="/static/data/assets/network_data/top100_historical_betweenness/graph_tory_manifestos_C21_G2.html">G2</a>]</td>
+<td>Betweenness Centrality</td>
+</tr>
+</tbody>
+</table>
+<h2>Meeting Notes</h2>
+<h3>Meeting 1</h3>
+<p>See <a href="https://www.dropbox.com/s/c8jmgddu3ekktj1/KeydataIntroMeeting.pptx?dl=1">here</a> for a copy of the powerpoint shown in the first meeting.</p>
+<h3>Meeting 2</h3>
+<p>See <a href="https://www.dropbox.com/s/pmm5bysdddvmkvf/keydata-meeting-2.pptx?dl=1">here</a> for a copy of the powerpoint shown in the second meeting.</p>
+<h3>Etc</h3>
+<ul>
+<li><a href="/static/data/assets/network_data/etc/graph_blackstone_G2.html">Blackstones</a><ul>
+<li><a href="/static/data/assets/network_data/etc/Blackstone.Laws_of_England.txt">Full text</a></li>
+</ul>
+</li>
+</ul>
+  </article>
+</main>
+<nav class="page-toc">
+  <ul id="page-toc-container">
+
+  </ul>
+</nav>
+
+<script src="/static/themes/bitsandpieces/scripts/highlight.js"></script>
+<script src="/static/themes/bitsandpieces/scripts/mousetrap.min.js"></script>
+<script src="/static/themes/bitsandpieces/scripts/clipboard.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+
+  document.querySelectorAll('.menuitem a').forEach(function(el) {
+    if (el.getAttribute('data-shortcut').length > 0) {
+      Mousetrap.bind(el.getAttribute('data-shortcut'), function() {
+        location.assign(el.getAttribute('href'));
+      });
+    }
+  });
+
+  /**
+   * Generate page table of contents
+   *
+   * Get all H2 elements and render them in a list
+  **/
+  function generatePageTOC() {
+    var tocContainer = document.getElementById('page-toc-container');
+
+    document.querySelectorAll('.article h2').forEach(function(el, index) {
+      // Insert a marker since anchor links breaks with css position sticky
+      // sticky headers upwards are stacked at the top of the viewport
+      // and therefore cannot be jumped to since they are already visible
+      // Instead inject a hidden element to use as a scroll marker
+      el.insertAdjacentHTML('beforebegin', '<i id="page-toc-'+index+'" class="page-toc-scroll-marker">TOC marker</i>');
+
+      var newTocNavItem = document.createElement('li');
+      var newTocNavItemLink = document.createElement('a');
+      var newTocNavItemText = document.createTextNode(el.textContent);
+
+      newTocNavItemLink.setAttribute('href', '#page-toc-' + index);
+      newTocNavItemLink.appendChild(newTocNavItemText);
+      newTocNavItem.appendChild(newTocNavItemLink);
+      tocContainer.appendChild(newTocNavItem);
+    });
+  }
+  generatePageTOC();
+
+  /**
+   * Copy to clipboard
+   *
+   * Powered by https://clipboardjs.com
+  **/
+
+  new ClipboardJS('.copy-to-clipboard-btn');
+
+  // Attach id attribute to all pre > code elements and append a button
+  document.querySelectorAll('pre code').forEach(function(el, index) {
+    el.setAttribute('id', 'code-block-' + index);
+  });
+
+  // Add copy-to-clipboard buttons. Begin by wrapping all pre elements in a div...
+  document.querySelectorAll('pre').forEach(function(el, index) {
+
+    // Create the wrapper div and apply classes on it
+    var wrapper = document.createElement('div');
+    wrapper.classList.add('code-block-container');
+
+    // Place the wrapper div before the pre element
+    el.parentNode.insertBefore(wrapper, el);
+
+    // Move the pre element inside the wrapper div
+    wrapper.appendChild(el);
+
+    // Append a copy to clipboard button after each code block
+    wrapper.insertAdjacentHTML('beforeend', `
+      <button type="button" class="copy-to-clipboard-btn" data-clipboard-target="#code-block-${index}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0H24V24H0z"/><path fill="currentColor" d="M13 11L11 11 11 14 8 14 8 16 11 16 11 19 13 19 13 16 16 16 16 14 13 14z"/><path fill="currentColor" d="M19 5h-2V3h-1.142c-.447-1.72-2-3-3.858-3S8.589 1.28 8.142 3H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zm-7-3c.739 0 1.385.402 1.731 1h-3.463c.347-.598.993-1 1.732-1zM9 5h6v2H9V5zm10 16H5V7h2v2h10V7h2v14z"/></svg>
+      </button>
+    `);
+  });
+</script>
+
+</body>
+</html>

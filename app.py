@@ -14,5 +14,17 @@ def analyze_word(word=None):
     #return template_path
     return render_template('word.html')
 
+
+
+@app.route('/manifestos')
+def manifestos():
+    return render_template('manifestos.html')
+
+@app.route('/manifestos_feb22')
+def manifestos_feb22():
+    return render_template('manifestos_feb22.html')
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
