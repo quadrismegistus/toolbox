@@ -11,8 +11,8 @@ app = Flask(__name__, template_folder=template_path, static_folder=static_path)
 @app.route('/word')
 @app.route('/word/<word>')
 def analyze_word(word=None):
-    return template_path
-    #return render_template('word.html')
+    #return template_path
+    return render_template('word.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
