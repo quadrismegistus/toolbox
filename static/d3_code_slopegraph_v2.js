@@ -108,8 +108,24 @@ max_rank = 25;
                     }
                 },
                 y2: function(d) { return yScale(d[keyValues[n+1]]); },
-                stroke: strokeColour,
-                'stroke-width': 1,
+                // stroke: strokeColour,
+                stroke: function(d) {
+                  var diff = d[keyValues[n+1]] - d[keyValues[n]];
+                  if ( Math.abs(diff) < 3 ) {
+                    return "black";
+                  } else if (diff < 0) {
+                    return "#00688b";
+                  } else {
+                    return "#8b1a1a";
+                  }
+                },
+                'stroke-width': function(d) {
+                  if (d[keyValues[n]] >= max_rank || d[keyValues[n+1]] >= max_rank) {
+                    return 0.25;
+                  } else {
+                    return 1;
+                  }
+                },
                 class: function (d, i) { return 'elm s-line-' + n + ' sel-' + i; }
             })
             .on('mouseover', dispatch._hover)
