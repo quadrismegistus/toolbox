@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<center>
+<input id="analyze_word" type="textbox" name="word">
+<input type='submit' id='analyze_word_button' value='Analyze word'></input>
+
+
+<div id="data_view"></div>
+
+
+
+
+{% include "slopegraph.html" %}
+
+
+
+{% include "linegraph_v3.html" %}
+
+
+<script type="text/javascript">
+$('#analyze_word_button').click(function() {
+	var word = $('#analyze_word').val();
+	analyze_word(word);
+});
+
+$('#analyze_word').bind("enterKey",function(e){
+	var word = $('#analyze_word').val();
+ 	analyze_word(word);
+});
+$('#analyze_word').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        $(this).trigger("enterKey");
+    }
+});
+
+function analyze_word(word) {
+	// $('#data_view').html('<b>' + word + '</b>');
+	make_slopegraph(word);
+	make_linegraph(word);
+}
+
+// analyze_word('abandonment')
+</script>
+
+
+
+
+
+</center>
+{% endblock %}
