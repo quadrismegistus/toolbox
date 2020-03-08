@@ -22,5 +22,5 @@ python-engineio==1.7.0
 python-socketio==1.8.1
 rsa==3.4.2
 six==1.11.0
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 WTForms==2.1
