@@ -21,6 +21,9 @@ def analyze_word(word=None):
 def index():
 	return render_template('about.html')
 
+@app.route('/corpus_coha')
+def corpus_coha():
+	return render_template('corpus_coha.html')
 
 @app.route('/manifestos')
 def manifestos():

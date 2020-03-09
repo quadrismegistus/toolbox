@@ -14,7 +14,7 @@
 
 // (function() {
 function make_slopegraph(word) {
-	$('#slopegraph').html("<h2>Slopegraph</h2>");
+	$('#slopegraph').html("<h2>Changing associations</h2>\n<li>The top 20 associated words per half-century.</li>\n<li>Click a word in the graph to pivot to that word's own data.</li><br/>");
 
     'use strict';
 
@@ -144,14 +144,14 @@ function make_slopegraph(word) {
 
         // ensure highlight is maintained on update
         if (!_.isNull(state.highlight)) {
-            d3.selectAll('.elm').style('opacity', 0.33);
+            d3.selectAll('.elm').style('opacity', 0.66);
             d3.selectAll('.sel-' + state.highlight).style('opacity', 1);
             highlightNav(state.highlight);
         }
     }
 
     function highlightLine(i) {
-        d3.selectAll('.elm').transition().style('opacity', 0.33);
+        d3.selectAll('.elm').transition().style('opacity', 0.66);
         d3.selectAll('.sel-' + i).transition().style('opacity', 1);
 				// d3.selectAll('.elm').transition().style('stroke', 'black');
 				// d3.selectAll('.elm').transition().style('stroke-width', 1);
