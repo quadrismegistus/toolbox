@@ -121,7 +121,7 @@ max_rank = 25;
                 },
                 'stroke-width': function(d) {
                   if (d[keyValues[n]] >= max_rank || d[keyValues[n+1]] >= max_rank) {
-                    return 0.25;
+                    return 0.4;
                   } else {
                     return 1;
                   }

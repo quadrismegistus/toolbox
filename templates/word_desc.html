@@ -43,7 +43,9 @@ function describe_word(word) {
 		"/static/data/db/changes/_total_rank.1900-1949-vs-1950-1999.json"
 	).done(function(d,total_ranked_data,period1_ranked_data,period2_ranked_data,period3_ranked_data){
 
-		console.log(period1_ranked_data,period2_ranked_data,period3_ranked_data);
+		if (d == undefined) {
+			console.log('oh no!');
+		}
 
 		// console.log(d);
 		d2=total_ranked_data['ranked_list'];
@@ -52,7 +54,7 @@ function describe_word(word) {
 		var z = round_to_precision(d['overall']['sim_avg_z'] * -1,1);
 		var length = d['overall']['num_words'];
 
-		max_num_total = 100;
+		max_num_total = 1000;
 
 		var html_total = "";
 		for (i = 0; i < max_num_total; i++) {
