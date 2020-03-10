@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <center>
-<input id="analyze_word" type="textbox" name="word">
+<input id="analyze_word" type="textbox" name="word" value="{{word}}">
 <input type='submit' id='analyze_word_button' value='Analyze word'></input>
 
 <div id="corpus_desc"></div>
@@ -49,6 +49,14 @@ function analyze_word(word) {
 	make_slopegraph(word);
 	make_linegraph(word);
 }
+
+$(document).ready(function() {
+	var word = $('#analyze_word').val();
+	if (word != "" & word!= undefined) {
+		analyze_word(word);
+	}
+});
+
 
 //analyze_word('value');
 </script>

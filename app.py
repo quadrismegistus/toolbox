@@ -10,9 +10,9 @@ app = Flask(__name__, template_folder=template_path, static_folder=static_path)
 @app.route('/')
 @app.route('/word')
 @app.route('/word/<word>')
-def analyze_word(word=None):
+def analyze_word(word=""):
     #return template_path
-    return render_template('word.html')
+    return render_template('word.html',word=word)
 
 
 
