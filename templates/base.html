@@ -113,3 +113,26 @@
     </div>
   </body>
 </html>
+
+
+
+
+
+
+<script>
+$(window).load(function(){
+$(window).scroll(function () {
+    if(($("#content").position().top - $(window).scrollTop()) <= 0)
+       {
+           $("#progressbar").addClass("fixit");
+       }
+       else
+       {
+           $("#progressbar").removeClass("fixit");
+       }
+
+    });
+});
+
+
+</script>

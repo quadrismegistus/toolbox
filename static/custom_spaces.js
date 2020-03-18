@@ -130,6 +130,7 @@ Promise.all(promises).then(function(files) {
 		var AllWords=[];
 		var AllPeriods = [];
 
+		$('#progressbar').html("")
 		var bar = new ProgressBar.Circle(progressbar, {
 			color: '#aaa',
 			// This has to be the same size as the maximum width to
@@ -159,6 +160,7 @@ Promise.all(promises).then(function(files) {
 		});
 		// bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
 		bar.text.style.fontSize = '1rem';
+		bar.animate(0.0);
 
 		console.log('bar',bar);
 

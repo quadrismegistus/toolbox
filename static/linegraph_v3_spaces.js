@@ -30,6 +30,40 @@ function make_linegraph_spaces(word, y_col = "Tangible (MT) <> Intangible (MT)",
 // console.log('attached data1 :',attached_data);
 
 
+$('#progressbar').html("")
+var bar = new ProgressBar.Circle(progressbar, {
+  color: '#aaa',
+  // This has to be the same size as the maximum width to
+  // prevent clipping
+  strokeWidth: 6,
+  trailWidth: 1,
+  // easing: 'easeInOut',
+  duration: 0,
+  text: {
+    autoStyleContainer: false
+  },
+  from: { color: '#aaa', width: 1 },
+  to: { color: '#333', width: 4 },
+  // Set default step function for all animate calls
+  step: function(state, circle) {
+    circle.path.setAttribute('stroke', state.color);
+    circle.path.setAttribute('stroke-width', state.width);
+
+    var value = Math.round(circle.value() * 100);
+    if (value === 0) {
+      circle.setText('');
+    } else {
+      circle.setText(value+'%');
+    }
+
+  }
+});
+// bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+bar.text.style.fontSize = '1rem';
+bar.animate(0.0);
+
+
+
 console.log('midmax',[y_min,y_mid,y_max],[x_min,x_mid,x_max]);
 
 
@@ -219,11 +253,48 @@ function(data) {
       // Add the points
 
       function desc_neighb(_word,_period) {
+        // $('')
         $.getJSON('/static/data/db/neighborhoods/COHA_30yr/'+_word+'.json', function(json) {
           //_period=_period.toString() + '-' + (parseInt(_period) + 30).toString()
           ////// console.log(json);
           ////// console.log(_period, json[_period] );
+
+          $('#progressbar').html("")
+          var bar = new ProgressBar.Circle(progressbar, {
+            color: '#aaa',
+            // This has to be the same size as the maximum width to
+            // prevent clipping
+            strokeWidth: 6,
+            trailWidth: 1,
+            // easing: 'easeInOut',
+            duration: 0,
+            text: {
+              autoStyleContainer: false
+            },
+            from: { color: '#aaa', width: 1 },
+            to: { color: '#333', width: 4 },
+            // Set default step function for all animate calls
+            step: function(state, circle) {
+              circle.path.setAttribute('stroke', state.color);
+              circle.path.setAttribute('stroke-width', state.width);
+
+              var value = Math.round(circle.value() * 100);
+              if (value === 0) {
+                circle.setText('');
+              } else {
+                circle.setText(value+'%');
+              }
+
+            }
+          });
+          // bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+          bar.text.style.fontSize = '1rem';
+          bar.animate(0.0);
+
+
+
           for (pwi=0; pwi<json.length; pwi++) {
+            bar.animate((pwi+1)/json.length);
             period=json[pwi][0];
             pwords=json[pwi][1];
 
@@ -295,13 +366,13 @@ function(data) {
           // .attr("r", function(d,i) { return (data_length - i) + 2) * 1.111; } )
           .attr("r", 5) //function(d,i) { return lineScaleCircle((i+1)/data.length); })  //function(d,i) { return 3.5; } )
           // .attr("r", 5)
-          // .attr("stroke",color)
-          // .attr('stroke-width',1)
+          .attr("stroke",color)
+          .attr('stroke-width',0.5)
           .attr("fill","transparent")
           .attr('class','dot dot_'+word+' '+'dot')
           .on('mouseover', function (d, i) {
                 _period=d.period;
-                _word=d.word;
+                _word=word;
                 res=desc_neighb(_word,_period);
 
                 spaces_highlight_line(_word);
@@ -310,7 +381,7 @@ function(data) {
                 spaces_unhighlight_lines();
               })
               .on('click', function(d,i) {
-                word=d.word;
+                word=word;
                 get_ranks(word,clear=false,redirect=false,origin_id=false,popup=true);
                 //window.open('/ranks/'+word, '_blank');
             });
@@ -350,7 +421,7 @@ function(data) {
         .attr('class','word_label word_label_'+word)
         .on('mouseover', function (d, i) {
             if (all_periods==false) { res=desc_neighb(word,'_total'); }
-            spaces_highlight_line(d.word);
+            spaces_highlight_line(word);
         })
         .on('mouseout', function(d,i) {
           spaces_unhighlight_lines();
@@ -358,7 +429,7 @@ function(data) {
         .on('click', function(d,i) {
           // get_ranks(d.word);
           //window.open('/ranks/'+d.word, '_blank');
-          get_ranks(d.word,clear=false,redirect=false,origin_id=false,popup=true);
+          get_ranks(word,clear=false,redirect=false,origin_id=false,popup=true);
       })
         .attr('fill',function() {
           if (all_periods!=false) { return 'black'; } else { return color; }
@@ -504,6 +575,8 @@ for(_wi = 0; _wi<words.length; _wi++) {
           ifn_dir=ifn_dir,
           attached_data=attached_data);
 }
+bar.animate((_wi)/words.length);
+
 
 } // end of make_linegraph
 

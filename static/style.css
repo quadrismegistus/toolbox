@@ -323,7 +323,22 @@ select { height:30px; }
   width: 75px;
   height: 75px;
   /* position: relative; */
-  position:absolute;
-  top:5px;
-  right:5px;
+  /* position:absolute; */
+  /* top:5px; */
+  /* right:5px; */
+  #fixed-div {
+    /* position: fixed; */
+    /* top: 1em; */
+    /* right: 1em; */
+}
+
+
+}
+
+
+.fixit
+{
+    position:fixed;
+
+    top: 0px;
 }

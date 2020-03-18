@@ -1,6 +1,6 @@
 import os
 
-DEFAULT_WORD = "data,work,culture"
+DEFAULT_WORD = "data,work,culture,data,work,culture,anxiety,anger,energy,sadness"
 
 from flask import Flask, request, render_template, redirect, url_for
 
@@ -85,6 +85,7 @@ GLOBAL_OPTS['y_vec_str']='Young - Old'
 
 @app.route('/')
 @app.route('/word')
+@app.route('/word/')
 @app.route('/word/<word>')
 def analyze_word(word=DEFAULT_WORD,**opts):
     OPTS = dict(list(opts.items()) + list(request.args.items()))
