@@ -59,12 +59,15 @@ function get_self_url(starter='/word/') {
 
 	// starter=window.location.href.split('?')[0];
 
-	url = starter;
+	cache_vars();
+
+	url = 'http://'+window.location.href.split('/')[2] + starter
 	url += get_word()
 	cmd=get_cmd()
+	console.log('view!',word,cmd);
 	url+='?view='+cmd
 
-	cache_vars();
+
 
 	var words = $('#analyze_word').val().replace(' ','');
 	var x_vec_str = $('#x_vec_str').val();
@@ -89,8 +92,10 @@ function get_self_url(starter='/word/') {
 	console.log('params!!',params);
 	let u = new URLSearchParams(params).toString();
 
-	url = window.location.href.split(starter)[0] + starter + words + '?' + u;
-	url=url.replace(starter+"/",starter);
+	if(u){ url+='&'+u; }
+
+	//alert(url);
+	//url=url.replace(starter+"/",starter);
 	return url;
 }
 
@@ -529,7 +534,7 @@ function analyze_word(view = undefined, points='average') {
 $(document).ready(function() {
 
 
-	
+
 
 
 
