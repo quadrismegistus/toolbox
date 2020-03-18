@@ -61,7 +61,8 @@ function get_self_url(starter='/word/') {
 
 	cache_vars();
 
-	url = 'http://'+window.location.href.split('/')[2] + starter
+	url_server='http://'+window.location.href.split('/')[2]
+	url = starter
 	url += get_word()
 	cmd=get_cmd()
 	console.log('view!',word,cmd);
@@ -77,7 +78,7 @@ function get_self_url(starter='/word/') {
 
 	console.log(words,x_vec_str,y_vec_str,x_vec,y_vec,'!!!!!!!');
 
-	var params={'view':cmd}
+	var params={} //'view':cmd}
 	if(cmd == 'custom') {
 		if (Boolean(x_vec_str)) { params['x_vec_str']=x_vec_str } else if (Boolean(x_vec)) { params['x_vec']=x_vec }
 		if (Boolean(y_vec_str)) { params['y_vec_str']=y_vec_str } else if (Boolean(y_vec)) { params['y_vec']=y_vec }
@@ -96,7 +97,11 @@ function get_self_url(starter='/word/') {
 
 	//alert(url);
 	//url=url.replace(starter+"/",starter);
-	return url;
+	URL = url_server + url;
+	URL_prefix_split = URL.split('://')
+	url2 = URL_prefix_split[0] + '://' + (URL_prefix_split[1].replace('//','/'))
+	//alert(url2);
+	return url2;
 }
 
 
