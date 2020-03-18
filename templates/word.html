@@ -61,8 +61,9 @@ function get_self_url(starter='/word/') {
 
 	cache_vars();
 
-	//url_server='http://'+window.location.href.split('/')[2]
-	url_server='http://cambridgekeydata.org'
+	url_server='http://'+window.location.href.split('/')[2].replace(/\/+$/, "")
+
+	<!-- url_server='http://cambridgekeydata.org' -->
 	url = starter
 	url += get_word()
 	cmd=get_cmd()
@@ -101,7 +102,7 @@ function get_self_url(starter='/word/') {
 	URL = url_server + url;
 	URL_prefix_split = URL.split('://')
 	url2 = URL_prefix_split[0] + '://' + (URL_prefix_split[1].replace('//','/'))
-	//alert(url2);
+	alert(url2);
 	return url2;
 }
 
