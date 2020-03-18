@@ -89,7 +89,9 @@ function get_self_url(starter='/word/') {
 	console.log('params!!',params);
 	let u = new URLSearchParams(params).toString();
 
-	return window.location.href.split(starter)[0] + starter + words + '?' + u;
+	url = window.location.href.split(starter)[0] + starter + words + '?' + u;
+	url=url.replace(starter+"/",starter);
+	return url;
 }
 
 
@@ -372,7 +374,7 @@ function resize_spaces(width) {
 
 			make_linegraph_spaces(words,y_col = "Objective (Abs-Cluster) <> Subjective (Abs-Cluster)", x_col = "Passive (HGI) <> Active (HGI)",div_id="Panel2", x_min=-4, x_max=4,y_min=-4, y_max=4,y_mid=0,x_mid=0, sp_title="Objectivity vs. passivity",y_col_name='<< Objective | Subjective >>',x_col_name="<< Passive | Active >>",all_periods=all_periods);
 
-			make_linegraph_spaces(words,y_col = 'Object (VG2) <> Human (VG2)', x_col = "Female (HGI) <> Male (HGI)",div_id="Panel3", x_min=-7, x_max=7,y_min=-4, y_max=4,y_mid=0,x_mid=0, sp_title="Animacy vs. gender",y_col_name = '<< Thing | Person >>',x_col_name='<< Female | Male >>',all_periods=all_periods);
+			make_linegraph_spaces(words,y_col = 'Object (VG2) <> Human (VG2)', x_col = "Female (HGI) <> Male (HGI)",div_id="Panel3", x_min=-4, x_max=4,y_min=-4, y_max=4,y_mid=0,x_mid=0, sp_title="Animacy vs. gender",y_col_name = '<< Thing | Person >>',x_col_name='<< Female | Male >>',all_periods=all_periods);
 
 		}
 
@@ -529,10 +531,15 @@ $(document).ready(function() {
 
 
 
-	OPTS = {{OPTS|tojson}};
+	var OPTS = {{OPTS|tojson}};
+	var GLOBAL_OPTS = {{GLOBAL_OPTS|tojson}};
 	// OPTS = {{OPTS|tojson}};
-
+	console.log('INCOMING GLOBAL_OPTS:',GLOBAL_OPTS);
 	console.log('INCOMING OPTS:',OPTS);
+	for (var key in GLOBAL_OPTS) {
+    //console.log(arr_jq_TabContents[key]);
+		localStorage.setItem(key,GLOBAL_OPTS[key]);
+	}
 	for (var key in OPTS) {
     //console.log(arr_jq_TabContents[key]);
 		localStorage.setItem(key,OPTS[key]);

@@ -76,6 +76,11 @@ def get_fields():
 GLOBAL_OPTS = {'fields':get_fields(), 'vecs':VECS, 'x_vec':'umap_V3', 'y_vec':'umap_V4'}
 GLOBAL_OPTS['all_fields_vecs'] = sorted(list(set(GLOBAL_OPTS['fields'] + GLOBAL_OPTS['vecs'])))
 
+GLOBAL_OPTS['points']='movement'
+GLOBAL_OPTS['view']='spaces'
+GLOBAL_OPTS['x_vec_str']='King - Man + Woman'
+GLOBAL_OPTS['y_vec_str']='Young - Old'
+
 
 
 @app.route('/')

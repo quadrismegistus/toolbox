@@ -180,7 +180,7 @@ function(data) {
 
       var lineScale = d3v4.scaleLinear()
         .domain([0, 1])
-        .range([8, 1]);
+        .range([7, 1]);
 
         var lineScaleCircle = d3v4.scaleLinear()
           .domain([0, 1])

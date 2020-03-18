@@ -313,3 +313,5 @@ select { height:30px; }
   clear: both;
   /* background-color: red; */
 }
+
+.word_label { font-weight: bold; font-size: 12px;}

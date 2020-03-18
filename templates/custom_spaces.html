@@ -18,7 +18,7 @@
 	<tr>
 		<td rowspan="2">X-axis:</td>
 		<td><select id="x_vec">
-			<option value=""{%if OPTS['x_vec_str'] or GLOBAL_OPTS['x_vec_str'] %} selected>{%endif%}</option>
+			<option value=""{%if OPTS['x_vec_str'] or GLOBAL_OPTS['x_vec_str'] %} selected>{%endif%}(choose field or field<>field vector)</option>
 			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
 				<option value="{{field}}"{%if field==OPTS['x_vec'] or (not OPTS['x_vec'] and GLOBAL_OPTS['x_vec'] and GLOBAL_OPTS['x_vec']==field) %}selected{%endif%}>{{field}}</option>
 			{% endfor %}
@@ -32,7 +32,8 @@
 	<tr>
 		<!-- <td></td> -->
 		<td>
-			<input type="textbox" id="x_vec_str" class="x_vec_str_class" value="{%if OPTS['x_vec_str'] and OPTS['x_vec_str']!='undefined' %}{{OPTS['x_vec_str']}}{%endif%}" placeholder="Custom vector for X-axis"></input>
+			<!-- <input type="textbox" id="x_vec_str" class="x_vec_str_class" value="{%if OPTS['x_vec_str'] and OPTS['x_vec_str']!='undefined' %}{{OPTS['x_vec_str']}}{%endif%}" placeholder="Custom vector for X-axis"></input> -->
+			<input type="textbox" id="x_vec_str" class="x_vec_str_class" value="{%if OPTS['x_vec_str'] %}{{OPTS['x_vec_str']}}{% elif GLOBAL_OPTS['x_vec_str'] %}{{GLOBAL_OPTS['x_vec_str']}}{% endif %}" placeholder="Custom vector for X-axis"></input>
 		</td>
 		<td></td>
 	</tr>
@@ -40,7 +41,7 @@
 	<tr>
 		<td rowspan="2">Y-axis:</td>
 		<td><select id="y_vec">
-			<option value=""{%if OPTS['y_vec_str'] or GLOBAL_OPTS['y_vec_str'] %} selected>{%endif%}</option>
+			<option value=""{%if OPTS['y_vec_str'] or GLOBAL_OPTS['y_vec_str'] %} selected>{%endif%}(choose field or field<>field vector)</option>
 			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
 				<option value="{{field}}"{%if field==OPTS['y_vec'] or (not OPTS['y_vec'] and GLOBAL_OPTS['y_vec'] and GLOBAL_OPTS['y_vec']==field) %}selected{%endif%}>{{field}}</option>
 			{% endfor %}
@@ -52,7 +53,8 @@
 	<tr>
 		<!-- <td></td> -->
 		<td>
-			<input type="textbox" id="y_vec_str" class="y_vec_str_class" value="{%if OPTS['y_vec_str'] and OPTS['y_vec_str']!='undefined' %}{{OPTS['y_vec_str']}}{%endif%}" placeholder="Custom vector for Y-axis"></input>
+			<!-- <input type="textbox" id="y_vec_str" class="y_vec_str_class" value="{%if OPTS['y_vec_str'] and OPTS['y_vec_str']!='undefined' %}{{OPTS['y_vec_str']}}{% elif GLOBAL_OPTS['y_vec_str'] and GLOBAL_OPTS['y_vec_str']!='undefined' %}"{{GLOBAL_OPTS['y_vec_str']}}{% endif %}" placeholder="Custom vector for Y-axis"></input> -->
+			<input type="textbox" id="y_vec_str" class="y_vec_str_class" value="{%if OPTS['y_vec_str'] %}{{OPTS['y_vec_str']}}{% elif GLOBAL_OPTS['y_vec_str'] %}{{GLOBAL_OPTS['y_vec_str']}}{% endif %}" placeholder="Custom vector for Y-axis"></input>
 		</td>
 		<td></td>
 	</tr>
@@ -75,6 +77,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	//$('#custom_spaces').hide();
+
 
 	$('#custom_spaces_button').click(function() { analyze_word();});
 	$('#y_vec_str').bind("enterKey",function(e){analyze_word();});
