@@ -177,7 +177,7 @@ Promise.all(promises).then(function(files) {
 				// add word_period vec
 				vecstr=dat['vectors'];
 				vecfl=parse_nums(vecstr);
-				AllVecs[Word]=vecfl;
+				AllVecs[Word.replace(' ','')]=vecfl;
 
 				// add period?
 				if (!AllPeriods.includes(dat['period'])) {
@@ -225,7 +225,7 @@ Promise.all(promises).then(function(files) {
 						dim_word_period_vec = parse_formula(dim_word.toLowerCase(),AllVecs,suffix='_'+period)
 						console.log('dim_vec Xcol formula result:',dim_word,dim_word_period_vec)
 					} else {
-						dim_word_period_vec = AllVecs[dim_word_period];
+						dim_word_period_vec = AllVecs[dim_word_period.replace(' ','')];
 
 					}
 					row_word_period_vec = AllVecs[row_word_period];
