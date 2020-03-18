@@ -25,7 +25,9 @@
 <script type="text/javascript">
 
 function make_linegraph(word) {
-	$('#linegraph').html("<div style='margin-top: 150px;'><h2>Frequency graph</h2></div>");
+
+	//$('#linegraph').html("<div style='margin-top: 150px;'><h2>Frequency graph</h2></div>");
+  $('#linegraph').html($('#linegraph').html() + "<hr style='clear:both;' /><div style='margin-top: 200px;'><h2>Frequency graph</h2></div><div class='linegraph' style=\"width: 1200px; height: 500px\" id='linegraph_"+word+"'></div>");
 
 var margin = {top: 20, right: 100, bottom: 30, left: 50},
     width = 1200 - margin.left - margin.right,
@@ -58,7 +60,7 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.temperature); });
 
-var svg = d3.select("#linegraph").append("svg")
+var svg = d3.select("#linegraph_"+word).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")

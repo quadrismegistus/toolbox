@@ -11,9 +11,9 @@ max_rank = 25;
     d3.eesur.slopegraph_v2 = function module() {
 
         // input vars for getter setters
-        var w = 300, // width of the set
+        var w = 175, // width of the set
             h = 800,
-            margin = {top: 40, bottom: 40, left: 80, right: 80},
+            margin = {top: 100, bottom: 100, left: 0, right: 0},
             gutter = 50,
             strokeColour = 'black',
             // key data values (in order)
@@ -93,7 +93,8 @@ max_rank = 25;
 
             lines.attr({
                 x1: function () {
-                    if (n === 0) {
+                    // if (n === 0) {
+                    if (1==2) {
                         return margin.left;
                     } else {
                         return ((w / sets) * n) + margin.left/2;
@@ -101,7 +102,8 @@ max_rank = 25;
                 },
                 y1: function(d) { return yScale(d[keyValues[n]]); },
                 x2: function () {
-                    if (n === sets-1) {
+                    //if (n === sets-1) {
+                    if (1==2) {
                          return w - margin.right;
                     } else {
                         return ((w / sets) * (n+1)) - gutter;
@@ -168,7 +170,8 @@ max_rank = 25;
 										.on('click',function(d) {
 											//console.log('clicky');
 											// make_slopegraph(d[keyName]);
-                      analyze_word(d[keyName]);
+                      //get_ranks(d[keyName]);
+                      get_ranks(d[keyName]); //,popup=false);
 										});
 
                 // title
@@ -192,7 +195,7 @@ max_rank = 25;
             startLabels.enter().append('text')
                 .attr({
                     class: function (d, i) { return 'labels l-labels elm ' + 'sel-' + i; },
-                    x: margin.left - 3,
+                    x: margin.left - 15,
                     y: function(d) { return yScale(d[keyValues[0]]) + 4; }
                 })
                 .text(function (d) {
@@ -209,7 +212,8 @@ max_rank = 25;
 								.on('click',function(d) {
 									//console.log('clicky');
 									//make_slopegraph(d[keyName]);
-                  analyze_word(d[keyName]);
+                  // analyze_word(d[keyName]);
+                  get_ranks(d[keyName]); //,popup=false);
 								});
 
             // title
@@ -234,7 +238,7 @@ max_rank = 25;
             endLabels.enter().append('text')
                 .attr({
                     class: function (d, i) { return 'labels r-labels elm ' + 'sel-' + i; },
-                    x: w - margin.right + 3,
+                    x: w - margin.right + 50,
                     y: function(d) { return yScale(d[keyValues[i]]) + 4; },
                 })
                 .text(function (d) {
@@ -251,7 +255,8 @@ max_rank = 25;
 								.on('click',function(d) {
 									//console.log('clicky');
 									// make_slopegraph(d[keyName]);
-                  analyze_word(d[keyName]);
+                  // analyze_word(d[keyName]);
+                  get_ranks(d[keyName]); //,popup=false);
 								});
 
             // title

@@ -1,0 +1,91 @@
+<div id="custom_spaces">
+
+<div id="spaces_custom_viz"></div>
+</div>
+<div id="feedback"></div>
+
+
+
+<table id='custom_opts_table' style="display:none;">
+	<thead>
+	<tr>
+		<th width="100">Axis</th>
+		<th width="250">Semantic vector</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td rowspan="2">X-axis:</td>
+		<td><select id="x_vec">
+			<option value="1"{%if OPTS['x_vec_str'] or GLOBAL_OPTS['x_vec_str'] %} selected>{%endif%}</option>
+			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
+				<option value="{{field}}"{%if field==OPTS['x_vec'] or (not OPTS['x_vec'] and GLOBAL_OPTS['x_vec'] and GLOBAL_OPTS['x_vec']==field) %}selected{%endif%}>{{field}}</option>
+			{% endfor %}
+			</select>
+		</td>
+		<td rowspan="4">
+			<input type='submit' id='custom_spaces_button' value='Plot'></input>
+		</td>
+
+	</tr>
+	<tr>
+		<!-- <td></td> -->
+		<td>
+			<input type="textbox" id="x_vec_str" class="x_vec_str_class" value="{%if OPTS['x_vec_str'] and OPTS['x_vec_str']!='undefined' %}{{OPTS['x_vec_str']}}{%endif%}" placeholder="Custom vector for X-axis"></input>
+		</td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">Y-axis:</td>
+		<td><select id="y_vec">
+			<option value="1"{%if OPTS['y_vec_str'] or GLOBAL_OPTS['y_vec_str'] %} selected>{%endif%}</option>
+			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
+				<option value="{{field}}"{%if field==OPTS['y_vec'] or (not OPTS['y_vec'] and GLOBAL_OPTS['y_vec'] and GLOBAL_OPTS['y_vec']==field) %}selected{%endif%}>{{field}}</option>
+			{% endfor %}
+			</select>
+		</td>
+		<td></td>
+
+	</tr>
+	<tr>
+		<!-- <td></td> -->
+		<td>
+			<input type="textbox" id="y_vec_str" class="y_vec_str_class" value="{%if OPTS['y_vec_str'] and OPTS['y_vec_str']!='undefined' %}{{OPTS['y_vec_str']}}{%endif%}" placeholder="Custom vector for Y-axis"></input>
+		</td>
+		<td></td>
+	</tr>
+
+	</tbody>
+	<tfoot>
+
+	</tfoot>
+</table>
+
+
+
+
+
+<script src="/static/vector_math.js"></script>
+<script src="/static/custom_spaces.js"></script>
+<script src="/static/numjs.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	//$('#custom_spaces').hide();
+
+	$('#custom_spaces_button').click(function() { analyze_word();});
+	$('#y_vec_str').bind("enterKey",function(e){analyze_word();});
+	$('#y_vec_str').keyup(function(e){if(e.keyCode == 13){$(this).trigger("enterKey");}});
+	$('#x_vec_str').bind("enterKey",function(e){analyze_word();});
+	$('#x_vec_str').keyup(function(e){if(e.keyCode == 13){$(this).trigger("enterKey");}});
+	$('#x_vec_str').on('input', function() { $('#x_vec').val(1);});
+	$('#y_vec_str').on('input', function() { $('#y_vec').val(1);});
+
+	$('#y_vec').change(function(){ $('#y_vec_str').val(""); analyze_word(); } );
+	$('#x_vec').change(function(){ $('#x_vec_str').val(""); analyze_word(); } );
+
+	});
+</script>

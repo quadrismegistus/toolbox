@@ -16,10 +16,10 @@ print(field_dir)
 
 
 VECS =  [
- # 'umap_V1',
- # 'umap_V2',
- # 'umap_V3',
- # 'umap_V4',
+ 'umap_V1',
+ 'umap_V2',
+ 'umap_V3',
+ 'umap_V4',
  'Animal (VG2) <> Human (VG2)',
  'Black <> White',
  'Concrete (CHPoetry-All) <> Abstract (CHPoetry-All)',
@@ -69,35 +69,43 @@ VECS =  [
  # 'period'
  ]
 
-def get_fields():
-    return [fn[:-5] for fn in os.listdir(field_dir) if fn.endswith('.json')]
 
 
-GLOBAL_OPTS = {'fields':get_fields(), 'vecs':VECS, 'x_vec':'umap_V3', 'y_vec':'umap_V4'}
-GLOBAL_OPTS['all_fields_vecs'] = sorted(list(set(GLOBAL_OPTS['fields'] + GLOBAL_OPTS['vecs'])))
+
+
 
 
 
 @app.route('/')
 @app.route('/word')
 @app.route('/word/<word>')
-def analyze_word(word=DEFAULT_WORD,**opts):
-    OPTS = dict(list(opts.items()) + list(request.args.items()))
-    return render_template('word.html',WORD=word, OPTS=OPTS, GLOBAL_OPTS=GLOBAL_OPTS)
+def analyze_word(word=DEFAULT_WORD,subpage="all"):
+    #return template_path
+    return render_template('word.html',word=word,subpage=subpage,vecs=VECS)
 
 @app.route('/spaces/<word>')
-def analyze_word_spaces(word=DEFAULT_WORD):
-    return analyze_word(word,view="spaces")
+def analyze_word_spaces(word=DEFAULT_WORD,subpage="spaces"):
+    #return template_path
+    return render_template('word.html',word=word,subpage=subpage,vecs=VECS)
 
 
 @app.route('/custom/<word>')
-def analyze_word_custom(word=DEFAULT_WORD):
-    return analyze_word(word,view="custom",x_vec_str="man",y_vec_str="woman")
+def analyze_word_custom(word=DEFAULT_WORD,subpage="custom",vec1=None,vec2=None):
+    #return template_path/
+    fields = [fn[:-5] for fn in os.listdir(field_dir) if fn.endswith('.json')]
+    print('!?',fields)
+
+    import random
+    vec1=random.choice(VECS)
+    vec2=random.choice(VECS)
+
+    return render_template('word.html',word=word,subpage=subpage,fields=fields,vecs=VECS,vec1=vec1,vec2=vec2)
 
 
 @app.route('/ranks/<word>')
 def analyze_word_ranks(word=DEFAULT_WORD):
-    return analyze_word(word,view="ranks")
+    #return template_path
+    return render_template('word.html',word=word,subpage="ranks",vecs=VECS)
 
 
 

@@ -1,0 +1,389 @@
+<div id="custom_spaces">
+
+
+<table class='custom_opts_table'>
+	<thead>
+	<tr><th width="100">Axis</th><th width="250">Existing semantic vector</th><th width="250">Custom vector</th></tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>X-axis:</td>
+		<td><select id="x_vec">
+			{% for field in vecs %}
+				<option value="{{field}}">{{field}}</option>
+			{% endfor %}
+			</select>
+		</td>
+		<td><input type="textbox" id="x_vec_custom_str" class="x_vec_custom_str_class" value="virtue"></input></td>
+	</tr>
+	<tr>
+		<td>Y-axis:</td>
+		<td><select id="y_vec">
+			{% for field in vecs %}
+				<option value="{{field}}">{{field}}</option>
+			{% endfor %}
+			</select>
+		</td>
+		<td><input type="textbox" id="y_vec_custom_str" class="y_vec_custom_str_class" value="vice"></input></td>
+	</tr>
+	</tbody>
+	<tfoot>
+
+	</tfoot>
+</table>
+<input type='submit' id='custom_spaces_button' value='Plot'></input>
+
+
+<!--
+<li>
+	X-axis:
+	<select id="x_vec">
+		{% for field in vecs %}
+			<option value="{{field}}">{{field}}</option>
+		{% endfor %}
+		</select>
+
+		<input type="textbox" name="x_vec_custom_str" value=""></input>
+</li>
+
+<li>
+Y-axis:
+<select id="y_vec">
+	{% for field in vecs[1:] %}
+		<option value="{{field}}">{{field}}</option>
+	{% endfor %}
+	</select>
+</li> -->
+
+
+
+
+
+<div id="spaces_custom_viz"></div>
+</div>
+<div id="feedback"></div>
+
+
+<!-- <div style="clear: both;"></div> -->
+
+<script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+	var loadLocalFile = function (filePath, done) {
+	    var fr = new FileReader();
+	    fr.onload = function () { return done(this.result); }
+	    fr.readAsText(filePath);
+	}
+	var loadFile = function (filePath, done) {
+	    var xhr = new XMLHTTPRequest();
+	    xhr.onload = function () { return done(this.responseText) }
+	    xhr.open("GET", filePath, true);
+	    xhr.send();
+	}
+
+
+	var AllWords=[];
+	var AllVecs=[];
+
+	function dotproduct(a,b) {
+	    var n = 0, lim = Math.min(a.length,b.length);
+	    for (var i = 0; i < lim; i++) n += a[i] * b[i];
+	    return n;
+	 }
+
+	function norm2(a) {var sumsqr = 0; for (var i = 0; i < a.length; i++) sumsqr += a[i]*a[i]; return Math.sqrt(sumsqr);}
+
+	function similarity(a, b) {return dotproduct(a,b)/norm2(a)/norm2(b);}
+
+	function cosine_sim(x, y) {
+	    xnorm = norm2(x);
+	    if(!xnorm) return 0;
+	    ynorm = norm2(y);
+	    if(!ynorm) return 0;
+	    return dotproduct(x, y) / (xnorm * ynorm);
+	}
+
+$(document).ready(function() {
+	$('#custom_spaces').hide();
+	//
+	//
+ 	// x_vec = localStorage.getItem("x_vec"); //, x_vec);
+	// y_vec = localStorage.getItem("y_vec"); //, y_vec);
+	// words = localStorage.getItem("words"); //, words);
+	//
+	// $('#x_vec').val(x_vec);
+	// $('#y_vec').val(y_vec);
+	// $('#analyze_word').val(words);
+});
+
+
+	$('#custom_spaces_button').click(function() {
+
+	custom_spaces();
+
+	get_vector('value');
+	});
+
+
+
+	function parse_nums(numstr) {
+		numl=[];
+		numdat=numstr.split(', ');
+		for (ni=0; ni<numdat.length; ni++) {
+			numl.push(parseFloat(numdat[ni]));
+		}
+		return numl
+	}
+
+
+function get_vector(word) {
+	// console.log(word,'!');
+	ifn='/static/data/db/matrices/COHA/'+word+'.tsv'
+	d3v4.tsv(ifn, function(data) {
+
+		Vecs = [];
+		Words = [];
+
+  	// console.log(data,'!?!?!?!?');
+
+		for (di=0; di<data.length; di++){
+			console.log(data[di]);
+			vecstr=data[di]['vectors'];
+			vecfl=parse_nums(vecstr);
+			Word=word+'_'+data[di]['period'];
+
+			Vecs.push(vecfl);
+			Words.push(word);
+		}
+
+		console.log(Vecs);
+		console.log(similarity(Vecs[0], Vecs[3]));
+
+		return (Vecs,Words);
+	});
+
+}
+
+
+function custom_spaces_custom_vec() {
+	var words = $('#analyze_word').val();
+	var x_vec_str = $('#x_vec_custom_str').val();
+	var y_vec_str = $('#y_vec_custom_str').val();
+
+	// $('#custom_spaces').html($('#custom_spaces').html() + '<b>HELLO</b>');
+	// console.log(x_vec_str, y_vec_str);
+
+	total_str = words+','+x_vec_str+','+y_vec_str;
+	all_vec_words = total_str.split(',');
+	console.log('all_vec_words',all_vec_words);
+
+	var AllVecs=[];
+	var AllWords=[];
+
+	promises = [];
+
+	for(vi=0; vi<all_vec_words.length; vi++) {
+		word=all_vec_words[vi];
+
+		ifn='/static/data/db/matrices/COHA/'+word+'.tsv'
+		console.log('promising:',ifn);
+		promises.push(d3v5.tsv(ifn));
+	}
+
+console.log('promises',promises);
+
+
+Promise.all(promises).then(function(files) {
+
+		var AllVecs=[];
+		var AllWords=[];
+
+		var AllWordVecs=[];
+
+		console.log('row1',files[0][0]);
+		console.log('row2',files[1][0]);
+		console.log(files.length);
+
+		for(fi=0;fi<files.length;fi++) {
+			// console.log(fi,'..............');
+			fdata=files[fi];
+			vec_word=all_vec_words[fi];
+			// console.log('fdata',vec_word,fdata);
+
+
+			WordVecs=[];
+			WordWords=[];
+
+			for(fdi=0; fdi<fdata.length;fdi++) {
+				dat=fdata[fdi];
+				Word=dat['word']+'_'+dat['period'];
+				console.log(Word);
+				AllWords.push(Word);
+				WordWords.push(Word);
+
+
+				vecstr=dat['vectors'];
+				vecfl=parse_nums(vecstr);
+				AllVecs.push(vecfl);
+				WordVecs.push(vecfl);
+			}
+
+			// var a = nj.array(WordVecs).reshape(WordVecs.length, WordVecs[0].length);    //AllWords.push(Word);
+			// console.log(a);
+			WordVecAvgs=[];
+			for(col_i=0;col_i<WordVecs[0].length;col_i++) {
+				ColScores=[]
+				 for(row_i=0;row_i<WordVecs.length;row_i++) {
+					 ColScores.push(WordVecs[row_i][col_i]);
+				 }
+				ColMean = nj.array(ColScores).mean();
+				WordVecAvgs.push(ColMean);
+			 }
+			// console.log('WordVecAvgs',WordVecAvgs);
+
+			// AllVecs.push(WordVecAvgs);
+			AllWordVecs.push(WordVecAvgs);
+			// AllWords.push(vec_word);
+		}
+
+
+		// Get similarity mappings
+
+		sim_ld = [];
+
+
+			for(vwii=0; vwii<AllWords.length;vwii++) {
+				vec_word2=AllWords[vwii];
+				vec2=AllVecs[vwii];
+
+				row_d = {'word':vec_word2};
+
+				for(vwi=0; vwi<all_vec_words.length;vwi++) {
+					vec_word=all_vec_words[vwi];
+					vec1=AllWordVecs[vwi];
+
+						sim = similarity(vec2,vec1);
+
+						row_d[vec_word]=sim
+
+						console.log(row_d);
+
+						//$('#feedback').html($('#feedback').html() + '<br/>' + vec_word +' | ' + vec_word2 +' | '+ sim );
+			}
+
+			// console.log(row_d);
+			sim_ld.push(row_d);
+
+			// Have all vectors, now what?
+
+
+			// Promise.all([d3v5.entries(sim_ld)]).then(function(files2) {
+			// 	console.log('files2',files);
+			// });
+
+
+		}
+		//
+		// d3.entries(sim_ld, function(d,i) {
+		// 	console.log('simd:',i,d);
+		//
+		// });
+
+
+
+
+
+
+	}).catch(function(err) {
+	console.log('err!',err);
+    // handle error here
+})
+	//
+	//
+	//
+	// 	idat = loadFile(ifn, function(d) { console.log('data',d); });
+	// 	console.log('idat',idat);
+	//
+	// 	d3v4.tsv(ifn, function(data) {
+	//
+	// 		var Vecs = [];
+	// 		var Words = [];
+	//
+	//   	// console.log(data,'!?!?!?!?');
+	//
+	// 		for (di=0; di<data.length; di++){
+	// 			// console.log(data[di]);
+	// 			vecstr=data[di]['vectors'];
+	// 			// console.log(vecstr);
+	// 			vecfl=parse_nums(vecstr);
+	// 			Word=word+'_'+data[di]['period'];
+	//
+	// 			AllVecs.push(vecfl);
+	// 			AllVecs.push(word);
+	// 		}
+	//
+	// 	});
+	// }
+	//
+	// console.log('AllWords',AllWords);
+
+}
+
+
+function custom_spaces() {
+
+	clear_viz();
+	// $('#custom_spaces').appendTo()
+	$('#custom_spaces').show();
+
+	get_desc(words,do_ranks=false);
+	var x_vec = $('#x_vec').val();
+	var y_vec = $('#y_vec').val();
+	var x_vec_str = $('#x_vec_custom_str').val();
+	var y_vec_str = $('#y_vec_custom_str').val();
+	var words = $('#analyze_word').val();
+	localStorage.setItem("x_vec", x_vec);
+	localStorage.setItem("y_vec", y_vec);
+	localStorage.setItem("x_vec_custom_str", x_vec);
+	localStorage.setItem("y_vec_custom_str", y_vec);
+	localStorage.setItem("words", words);
+
+	window.history.pushState({state: "dummyState"}, "Title", "/custom/"+words);
+
+	$('#spaces_custom_viz').html(spaces_header_html);
+
+	all_periods = (localStorage.getItem('space_type')!='average');
+
+	console.log(all_periods);
+
+if (x_vec_str!="" & x_vec_str!=undefined) {
+
+
+	custom_spaces_custom_vec();
+
+} else {
+
+	make_linegraph_spaces(
+		words,
+		y_col = y_vec,
+		x_col = x_vec,
+		div_id="custom_viz",
+		x_min=-4, x_max=4,
+		y_min=-4,y_max=4,
+		sp_title="",
+		y_col_name = y_vec, //"<< Concrete | Abstract >>",
+		x_col_name = x_vec,
+		all_periods=all_periods);
+
+}
+
+
+
+	//, // "<< Negative | Positive >>",all_periods=all_periods); //,x_min=-0.45, x_max=0.45, y_min=-0.45, y_max=0.45);
+
+}
+
+</script>

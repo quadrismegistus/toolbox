@@ -1,6 +1,6 @@
 
 
-<center><div id="slopegraph" class="slope" style="width: 1200px; height: 800px"></div></center>
+<center><div id="slopegraph"></div></center>
 
 <!-- *************** start js/d3 code ***************** -->
 
@@ -11,18 +11,22 @@
 
 <script>
 //  render slopegraph chart
+// <div id="slopegraph"></div>
 
 // (function() {
-function make_slopegraph(word) {
-	$('#slopegraph').html("<h2>Changing associations</h2>\n<li>The top 20 associated words per half-century.</li>\n<li>Click a word in the graph to pivot to that word's own data.</li><br/>");
+function make_slopegraph(word,silent=false) {
+	$('#slopegraph').html( $('#slopegraph').html() + "\n<div class='slopediv'><div class=\"popup_closer\"> <a href=\"#\" onclick=\"close_popups()\">[Close]</a></div> <h2>Changing associations of “"+word+"”</h2>\n <li>The top 20 associated words per half-century.</li>\n<li>Click a word in the graph to pivot to that word's own data.</li><br/><div class=\"slope\" style=\"width: 1200px; height: 800px\" id='slopegraph_"+word+"'></div></div>");
+
+$("#slopegraph_"+word).html("");
+
+	if (silent==true) { $('#slopegraph').hide(); }
 
     'use strict';
 
     var data,
-        // keys values from data to be applied
-        //keyValues = ['1850', '2002', '2004', '2006', '2008', '2010', '2012'];
-				// keyValues = [1800, 1850, 1900, 1950];
-				keyValues = ['1800-1849', '1850-1899', '1900-1949', '1950-1999'];
+ keyValues = ['1810-1840', '1840-1870', '1870-1900', '1900-1930', '1930-1960', '1960-1990', '1990-2020'];
+
+ //console.log(keyValues);
 
     // store chart
     var slopegraph;
@@ -38,8 +42,8 @@ function make_slopegraph(word) {
         highlight: null
     };
 
-    d3.json('/static/data/db/ranks/COHA_v2/'+word+'.json', function(error, json) {
-			console.log('hi?',json);
+    d3.json('/static/data/db/ranks/COHA_30yr/'+word+'.json', function(error, json) {
+			//console.log('hi?',json);
         if (error) throw error;
         // access data outside this callback
         data = json;
@@ -138,7 +142,7 @@ function make_slopegraph(word) {
 
 
         // apply chart
-        d3.select('#slopegraph')
+        d3.select('#slopegraph_'+word)
             .datum(data)
             .call(slopegraph);
 
@@ -173,10 +177,44 @@ function make_slopegraph(word) {
     d3.select(self.frameElement).style('height', '800px');
 
 
-		$('#analyze_word').val(word);
-		// console.log(word);
+		//$('#analyze_word').val(word);
+		// //console.log(word);
+//
+// if (silent == true) {
+//
+// 	//console.log('silent...')
+//
+// // 		$.magnificPopup.open({
+// // 	    items: {
+// // 	      src: $('<div class="popup-fullscreen" id="ranks-popup"></div>'),
+// // 	      type: 'inline'
+// // 	  },
+// //
+// //
+// // 		callbacks: {
+// // 	  open: function() {
+// // 			//console.log('called back!', $('#ranks-popup').html());
+// //
+// // 			$('#ranks-popup').html("");
+// // 			$('#slopegraph').appendTo('#ranks-popup');
+// //
+// // 			//console.log('called back!', $('#ranks-popup').html(),  'slopegraph:', $('#slopegraph').html());
+// //
+// // 			$('#slopegraph').show();
+// //
+// // 	    // $('#slopegraph').appendTo('.ranks-popup');
+// // 			// $('#slopegraph').show();
+// // 	    // //console.log(item); // Do whatever you want with "item" object
+// // 	  }
+// // 	}
+// // });
+//
+//
+// } else {
+// 	$('#slopegraph').show();
+// }
 
-};
+}
 
 
 // make_slopegraph();

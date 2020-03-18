@@ -1,4 +1,13 @@
+<div id="data_view"></div>
+
+
+<div style="clear: both;"></div>
+
+
 <script type="text/javascript">
+
+
+
 
 	function round_to_precision(x, precision) {
     //var y = +x + (precision === undefined ? 0.5 : precision/2);
@@ -11,7 +20,7 @@
 }
 
 function describe_word(word) {
-	$('#corpus_desc').html('<h2><a href="#" class="popup_corpus_coha">Corpus description</a></h2><li>So far the corpus used is the <a href="#" class="popup_corpus_coha">Corpus of Historical American English (COHA)</a>.</li>');
+	$('#corpus_desc').html(''); //<h2><a href="#" class="popup_corpus_coha">Corpus description</a></h2><li>So far the corpus used is the <a href="#" class="popup_corpus_coha">Corpus of Historical American English (COHA)</a>.</li>');
 
 	$(function() {
 		$('.popup_corpus_coha').magnificPopup({
@@ -23,7 +32,7 @@ function describe_word(word) {
 	});
 
 	function load_total_rank_data() {
-		$.getJSON("/static/data/db/changes/_total_rank.json", function(data) {
+		$.getJSON("/static/data/db/changes/COHA/_total_rank.json", function(data) {
 			return data;
 		});
 	}
@@ -32,24 +41,26 @@ function describe_word(word) {
 	//  *   .fail(function(jqxhr, textStatus, error){})
 	//  *   .done(function(file1, file2){})
 
-	var html="<h2>Word summary</h2>\n";
+	//var html="<div class='word_sum'>\n";
+	var html=$('#word_bar').html()
+	//console.log
 	// $.getJSON("/static/data/db/changes/"+word+".json", function(d) {
 
 	jQuery.getMultipleJSON(
-		"/static/data/db/changes/"+word+".json",
-		"/static/data/db/changes/_total_rank.json",
-		"/static/data/db/changes/_total_rank.1800-1849-vs-1850-1899.json",
-		"/static/data/db/changes/_total_rank.1850-1899-vs-1900-1949.json",
-		"/static/data/db/changes/_total_rank.1900-1949-vs-1950-1999.json"
+		"/static/data/db/changes/COHA/"+word+".json",
+		"/static/data/db/changes/COHA/_total_rank.json",
+		"/static/data/db/changes/COHA/_total_rank.1800-1849-vs-1850-1899.json",
+		"/static/data/db/changes/COHA/_total_rank.1850-1899-vs-1900-1949.json",
+		"/static/data/db/changes/COHA/_total_rank.1900-1949-vs-1950-1999.json"
 	).done(function(d,total_ranked_data,period1_ranked_data,period2_ranked_data,period3_ranked_data){
 
 		if (d == undefined) {
-			console.log('oh no!');
+			//console.log('oh no!');
 		}
 
-		// console.log(d);
+		// //console.log(d);
 		d2=total_ranked_data['ranked_list'];
-		// console.log('d2',d2);
+		// //console.log('d2',d2);
 		var rank = Math.floor(d['overall']['sim_avg_rank']);
 		var z = round_to_precision(d['overall']['sim_avg_z'] * -1,1);
 		var length = d['overall']['num_words'];
@@ -108,21 +119,25 @@ function describe_word(word) {
 
 
 
-		html = html + "<li>The degree of overall semantic change in <b>"+word+"</b> is ranked <a href='#' class = 'popup_rank_total'><b>"+rank+"</b> of "+length+" words</a> (z="+z+").</li>\n"
+		// html = html + "<li>The degree of overall semantic change in <b>"+word+"</b> is ranked <a href='#' class = 'popup_rank_total'><b>"+rank+"</b> of "+length+" words</a> (z="+z+").</li>\n"
+		if(html==undefined){html="";}
+		html = html + "<li>View ranks for <b><a href='#' onclick=\"get_ranks('"+word+"')\">“"+word+"”</a></b> <small>(LSC ranked <a href='#' class = 'popup_rank_total'><b>"+rank+"</b> of "+length+"</a> [z="+z+"])</small></li>\n"
 
-		if (rank_period1 != undefined) {
-			html = html + "<li>From eC19 to lC19, this change is ranked <a href='#' class = 'popup_rank_period1'><b>"+rank_period1+"</b> of "+length_period1+"</a> (z="+z_period1+").</li>\n"
-		}
-		if (rank_period2 != undefined) {
-			html = html + "<li>From lC19 to eC20, this change is ranked <a href='#' class = 'popup_rank_period2'><b>"+rank_period2+"</b> of "+length_period2+"</a> (z="+z_period2+").</li>\n"
-		}
-		if (rank_period3 != undefined) {
-			html = html + "<li>From eC20 to lC20, this change is ranked <a href='#' class = 'popup_rank_period3'><b>"+rank_period3+"</b> of "+length_period3+"</a> (z="+z_period3+").</li>\n"
-		}
+		// if (rank_period1 != undefined) {
+		// 	html = html + "<li>From eC19 to lC19: <a href='#' class = 'popup_rank_period1'><b>"+rank_period1+"</b> of "+length_period1+"</a> (z="+z_period1+").</li>\n"
+		// }
+		// if (rank_period2 != undefined) {
+		// 	html = html + "<li>From lC19 to eC20: <a href='#' class = 'popup_rank_period2'><b>"+rank_period2+"</b> of "+length_period2+"</a> (z="+z_period2+").</li>\n"
+		// }
+		// if (rank_period3 != undefined) {
+		// 	// html = html + "<li>From eC20 to lC20, this change is ranked <a href='#' class = 'popup_rank_period3'><b>"+rank_period3+"</b> of "+length_period3+"</a> (z="+z_period3+").</li>\n"
+		// 	html = html + "<li>From eC20 to lC20: <a href='#' class = 'popup_rank_period3'><b>"+rank_period3+"</b> of "+length_period3+"</a> (z="+z_period3+").</li>\n"
+		// }
 
-		html = html;
+		html = html + "</div>";
 
-		$('#data_view').html(html);
+
+		$('#data_view').html($('#data_view').html() + html);
 
 		$('.popup_rank_total').magnificPopup({
 		  items: {
@@ -152,6 +167,7 @@ function describe_word(word) {
 		  }
 		});
 	});
+
 
 
 }

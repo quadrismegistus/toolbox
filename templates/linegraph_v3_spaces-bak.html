@@ -1,0 +1,161 @@
+<style>
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+</style>
+
+
+<center>
+<div id="linegraph_spaces">
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+</div>
+
+<script type="text/javascript">
+
+
+function make_linegraph_spaces(word, y_col = "Tangible (MT) <> Intangible (MT)", x_col = "Vice (HGI) <> Virtue (HGI)") {
+	$('#linegraph_spaces').html("<div id='linegraph_spaces' style='margin-top: 150px;'><h2>Semantic spaces</h2></div><div id=\"my_dataviz\"></div>");
+// $('#my_dataviz').html("");
+
+
+var colors = ["#d53e4f","#fc8d59","#fee08b","#ffffbf","#e6f598","#99d594","#3288bd"];
+
+  // set the dimensions and margins of the graph
+  var margin = {top: 10, right: 30, bottom: 30, left: 60},
+      width = 800 - margin.left - margin.right,
+      height = 800 - margin.top - margin.bottom;
+  // append the svg object to the body of the page
+  var svg = d3v4.select("#my_dataviz")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+  //Read the data
+  d3v4.csv("/static/data/db/spaces/COHA/" + word + ".csv",
+    // When reading the csv, I must format variables:
+    function(d){
+      od = { date : d[x_col], value : d[y_col], period:d['date'] }
+      console.log(od);
+      return od
+    },
+    // Now I can use this dataset:
+    function(data) {
+
+      data_length = data.length;
+
+      var x = d3v4.scaleLinear()
+        //.domain(d3v4.extent(data, function(d) { return d.date; }))
+        .domain([-0.5, 0.5])
+        .range([ 0, width ]);
+
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3v4.axisBottom(x))
+        .call(d3v4.axisTop(x));
+
+      // Add Y axis
+      var y = d3v4.scaleLinear()
+        .domain( [-0.5, 0.5])
+        .range([ height, 0 ]);
+
+      svg.append("g")
+        .call(d3v4.axisLeft(y));
+
+        svg.append("g")
+          .call(d3v4.axisRight(y));
+
+        // text label for the x axis
+        svg.append("text")
+            .attr("transform",
+                  "translate(" + (width/2) + " ," +
+                                 (height + margin.top + 20) + ")")
+            .style("text-anchor", "middle")
+            .text(x_col);
+
+        // text label for the y axis
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text(y_col);
+
+
+
+      // Add the line
+      svg.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", function(d,i) { return 'black';})
+        // .attr("stroke-width", 3) //function(d,i) { return data_length-i; })
+         .attr("style", function(d,i) { return ("stroke-width: 2px;");})
+        .attr("d", d3v4.line()
+          .x(function(d) { return x(d.date) })
+          .y(function(d) { return y(d.value) })
+        );
+
+        svg.append("line")
+      .style("stroke", "black")
+      .attr("x1", 0)
+    .attr("y1", y(0))
+    .attr("x2", width)
+    .attr("y2", y(0));
+
+    svg.append("line")
+  .style("stroke", "black")
+  .attr("x1", x(0))
+  .attr("y1", 0)
+  .attr("x2", x(0))
+  .attr("y2", height);
+
+      // Add the points
+      svg
+        .append("g")
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+          .attr("cx", function(d) { return x(d.date) } )
+          .attr("cy", function(d) { return y(d.value) } )
+          .attr("r", function(d,i) { return (data_length - i + 1) * 1.5; } )
+          .attr("fill", function(d,i) { return colors[i]; } );
+
+      svg.append("g")
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("text")
+        .attr("x", function(d) { return x(d.date)+10; })
+        .attr("y", function(d) { return y(d.value)-5; })
+        .text(function(d) { return d.period; })
+        // .attr("font-family", "Baskerville")
+        .attr("font-size", "13px");
+        // .attr("fill", function(d,i){return colors[i];});
+
+  })
+
+
+}
+
+// make_linegraph('abandonment');
+</script>

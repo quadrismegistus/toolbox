@@ -1,0 +1,63 @@
+<div id="field_view" style="display; none;"></div>
+
+
+<!-- <div style="clear: both;"></div> -->
+
+
+<script type="text/javascript">
+
+function describe_field(field1_field2) {
+
+	fields = field1_field2.split(' <> ')
+	field1 = fields[0];
+	field2 = fields[1];
+	console.log(field1,field2);
+
+	jQuery.getMultipleJSON(
+		"/static/data/db/fields/"+field1+".json",
+		"/static/data/db/fields/"+field2+".json",
+	).done(function(d1,d2){
+
+
+
+		html = ['<center><h3>'+field1_field2+'</h3></center><table class="field_table"><tr><th>Part of speech</th><th>50 Most "'+field1+'"<br/> when subtracting "'+field2+'"</th><th>50 Most "'+field2+'"<br/> when subtracting "'+field1+'"</th></tr>'];
+		// html2 = [];
+		pos_l = ['nouns','verbs','adj'];
+
+		num_words=0;
+		for(pos_i=0; pos_i<pos_l.length; pos_i++) {
+			pos = pos_l[pos_i]
+			pos_words1=d1[pos]
+			pos_words2=d2[pos]
+
+			num_words+=pos_words1.length;
+			num_words+=pos_words2.length;
+
+			pos_line = '<tr>'
+			pos_line += '<th>'+pos+'</th>'
+			pos_line += '<td>'+pos_words1.slice(0,50).join(", ")+'</td>'
+			pos_line += '<td>'+pos_words2.slice(0,50).join(", ")+'</td>'
+			pos_line += '</tr>'
+
+			html.push(pos_line)
+		}
+
+		html[0]=html[0].replace('</h3>','</h3><h4>Number of words: '+num_words+'</h4>')
+
+		htmlstr=html.join('\n');
+
+		$.magnificPopup.open({
+			items: {
+				src: $('<div class="popup-content" id="field-popup">'+htmlstr+'</div>'),
+				type: 'inline'
+		},
+		showCloseBtn: true,
+		closeBtnInside: true,
+	});
+});
+
+
+
+}
+
+</script>
