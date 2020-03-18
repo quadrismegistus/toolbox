@@ -315,3 +315,15 @@ select { height:30px; }
 }
 
 .word_label { font-weight: bold; font-size: 12px;}
+
+
+#progressbar {
+  /* float:right; */
+  margin: 0px;
+  width: 75px;
+  height: 75px;
+  /* position: relative; */
+  position:absolute;
+  top:5px;
+  right:5px;
+}

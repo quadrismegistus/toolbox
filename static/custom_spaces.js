@@ -123,10 +123,44 @@ function get_custom_space(words = undefined,x_vec=undefined,x_vec_str=undefined,
 		promises.push(d3v5.tsv(ifn));
 	}
 
+
+
 Promise.all(promises).then(function(files) {
 		var AllVecs={};
 		var AllWords=[];
 		var AllPeriods = [];
+
+		var bar = new ProgressBar.Circle(progressbar, {
+			color: '#aaa',
+			// This has to be the same size as the maximum width to
+			// prevent clipping
+			strokeWidth: 6,
+			trailWidth: 1,
+			// easing: 'easeInOut',
+			duration: 0,
+			text: {
+				autoStyleContainer: false
+			},
+			from: { color: '#aaa', width: 1 },
+			to: { color: '#333', width: 4 },
+			// Set default step function for all animate calls
+			step: function(state, circle) {
+				circle.path.setAttribute('stroke', state.color);
+				circle.path.setAttribute('stroke-width', state.width);
+
+				var value = Math.round(circle.value() * 100);
+				if (value === 0) {
+					circle.setText('');
+				} else {
+					circle.setText(value+'%');
+				}
+
+			}
+		});
+		// bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+		bar.text.style.fontSize = '1rem';
+
+		console.log('bar',bar);
 
 		for(fi=0;fi<files.length;fi++) {
 			fdata=files[fi];
@@ -148,6 +182,8 @@ Promise.all(promises).then(function(files) {
 					AllPeriods.push(dat['period']);
 				}
 			}
+
+		bar.animate((fi+1)/files.length);
 		}
 		console.log('AllVecs',words_l);
 		console.log('AllWords',AllPeriods);
