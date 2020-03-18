@@ -182,10 +182,12 @@ function(data) {
             .style("text-anchor", "middle")
             .text(function() { if(x_col_name != "") { return x_col_name; } else { return x_col; } })
 						.attr('fill','black')
+            .attr('class','x_axis_label axis_label')
             .on('click',function() { describe_field(x_col) });
 
         // text label for the y axis
         svg.append("text")
+            .attr('class','y_axis_label axis_label')
             .attr("transform", "rotate(-90)")
             .attr("y", 0 - margin.left + 5)
             .attr("x",0 - (height / 2))

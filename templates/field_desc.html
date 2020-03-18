@@ -18,6 +18,38 @@ function describe_field(field1_field2) {
 		"/static/data/db/fields/"+field2.replace('%20','').replace(' ','')+".json",
 	).done(function(d1,d2){
 
+		$('#progressbar').html("")
+		var bar = new ProgressBar.Circle(progressbar, {
+			color: '#aaa',
+			// This has to be the same size as the maximum width to
+			// prevent clipping
+			strokeWidth: 6,
+			trailWidth: 1,
+			// easing: 'easeInOut',
+			duration: 0,
+			text: {
+				autoStyleContainer: false
+			},
+			from: { color: '#aaa', width: 1 },
+			to: { color: '#333', width: 4 },
+			// Set default step function for all animate calls
+			step: function(state, circle) {
+				circle.path.setAttribute('stroke', state.color);
+				circle.path.setAttribute('stroke-width', state.width);
+
+				var value = Math.round(circle.value() * 100);
+				if (value === 0) {
+					circle.setText('');
+				} else {
+					circle.setText(value+'%');
+				}
+
+			}
+		});
+		// bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+		bar.text.style.fontSize = '1rem';
+		bar.animate(0.0);
+
 
 
 		html = ['<center><h3>'+field1_field2+'</h3></center><table class="field_table"><tr><th>Part of speech</th><th>50 Most "'+field1+'"<br/> when subtracting "'+field2+'"</th><th>50 Most "'+field2+'"<br/> when subtracting "'+field1+'"</th></tr>'];
@@ -26,6 +58,7 @@ function describe_field(field1_field2) {
 
 		num_words=0;
 		for(pos_i=0; pos_i<pos_l.length; pos_i++) {
+			bar.animate((pos_i+1)/pos_l.length);
 			pos = pos_l[pos_i]
 			pos_words1=d1[pos]
 			pos_words2=d2[pos]

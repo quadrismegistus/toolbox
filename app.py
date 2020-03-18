@@ -1,6 +1,6 @@
 import os
 
-DEFAULT_WORD = "data,work,culture,anxiety,anger,energy,sadness"
+DEFAULT_WORD = "data,work,culture,energy,anger,anxiety,sadness"
 
 from flask import Flask, request, render_template, redirect, url_for
 

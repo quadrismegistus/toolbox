@@ -342,3 +342,10 @@ select { height:30px; }
 
     top: 0px;
 }
+
+
+
+.axis_label { cursor: help; }
+.word_legend { cursor: pointer; }
+.word_label { cursor: pointer; }
+.dot { cursor: pointer; }
