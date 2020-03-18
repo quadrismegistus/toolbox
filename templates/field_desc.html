@@ -14,8 +14,8 @@ function describe_field(field1_field2) {
 	console.log(field1,field2);
 
 	jQuery.getMultipleJSON(
-		"/static/data/db/fields/"+field1+".json",
-		"/static/data/db/fields/"+field2+".json",
+		"/static/data/db/fields/"+field1.replace('%20',' ')+".json",
+		"/static/data/db/fields/"+field2.replace('%20',' ')+".json",
 	).done(function(d1,d2){
 
 
