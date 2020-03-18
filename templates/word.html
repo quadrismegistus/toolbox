@@ -522,6 +522,7 @@ function analyze_word(view = undefined, points='average') {
 
 		cache_vars();
 		var url=get_self_url();
+		console.log('URL??',url);
 		window.history.pushState({state: "dummyState"}, "Title", url);
 		$('#footer').html('<hr/><small>[Cite: <a href="'+url+'" target="_blank">'+url+'</a></small>]')
 
