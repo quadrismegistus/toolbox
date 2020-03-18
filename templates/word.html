@@ -33,7 +33,7 @@ function clear_viz() {
 
 
 function cache_vars() {
-	var words = $('#analyze_word').val();
+	var words = $('#analyze_word').val().replace(' ','');
 	var x_vec_str = $('#x_vec_custom_str').val();
 	var y_vec_str = $('#y_vec_custom_str').val();
 	var x_vec = $('#x_vec').val();
@@ -66,7 +66,7 @@ function get_self_url(starter='/word/') {
 
 	cache_vars();
 
-	var words = $('#analyze_word').val();
+	var words = $('#analyze_word').val().replace(' ','');
 	var x_vec_str = $('#x_vec_str').val();
 	var y_vec_str = $('#y_vec_str').val();
 	var x_vec = $('#x_vec').val();
@@ -187,7 +187,7 @@ function average_vecs(WordVecs) {
 function get_spacetype() { res=localStorage.getItem('points'); if(res){return res;}else{return 'average';} }
 
 function get_word() {
-	current_word_form_in_input_bar = $('#analyze_word').val();
+	current_word_form_in_input_bar = $('#analyze_word').val().replace(' ','');
 	localStorage.setItem('words',current_word_form_in_input_bar);
 	return current_word_form_in_input_bar;
 }
@@ -208,7 +208,7 @@ function set_to_movements() {
 
 
 function expand_words(word,k=2) {
-	word = $('#analyze_word').val();
+	word = $('#analyze_word').val().replace(' ','');
  words = word.split(',');
  var new_words = [];
  for (i=0; i<words.length; i++) {
@@ -230,7 +230,7 @@ function expand_words(word,k=2) {
 						console.log('!',nw);
 						new_words.push(nw);
 
-						word_str = $('#analyze_word').val();
+						word_str = $('#analyze_word').val().replace(' ','');
 						if (word_str) { word_str += ","+nw; } else { word_str=nw; }
 						$('#analyze_word').val(word_str);
 
@@ -446,6 +446,7 @@ function show_cmd_bar(word, cmd=undefined) {
 
 function analyze_word(view = undefined, points='average') {
 	// get word input
+	$('#analyze_word').val($('#analyze_word').val().replace(' ',''))
 	word = get_word();
 	console.log('analyze_word',word,view,points);
 

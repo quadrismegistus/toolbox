@@ -18,7 +18,7 @@
 	<tr>
 		<td rowspan="2">X-axis:</td>
 		<td><select id="x_vec">
-			<option value="1"{%if OPTS['x_vec_str'] or GLOBAL_OPTS['x_vec_str'] %} selected>{%endif%}</option>
+			<option value=""{%if OPTS['x_vec_str'] or GLOBAL_OPTS['x_vec_str'] %} selected>{%endif%}</option>
 			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
 				<option value="{{field}}"{%if field==OPTS['x_vec'] or (not OPTS['x_vec'] and GLOBAL_OPTS['x_vec'] and GLOBAL_OPTS['x_vec']==field) %}selected{%endif%}>{{field}}</option>
 			{% endfor %}
@@ -40,7 +40,7 @@
 	<tr>
 		<td rowspan="2">Y-axis:</td>
 		<td><select id="y_vec">
-			<option value="1"{%if OPTS['y_vec_str'] or GLOBAL_OPTS['y_vec_str'] %} selected>{%endif%}</option>
+			<option value=""{%if OPTS['y_vec_str'] or GLOBAL_OPTS['y_vec_str'] %} selected>{%endif%}</option>
 			{% for field in GLOBAL_OPTS['all_fields_vecs'] %}
 				<option value="{{field}}"{%if field==OPTS['y_vec'] or (not OPTS['y_vec'] and GLOBAL_OPTS['y_vec'] and GLOBAL_OPTS['y_vec']==field) %}selected{%endif%}>{{field}}</option>
 			{% endfor %}
