@@ -34,12 +34,18 @@ function get_self_url(starter='/word/') {
 
 	// starter=window.location.href.split('?')[0];
 
-	url = starter;
+	cache_vars();
+
+	url_server='http://'+window.location.href.split('/')[2].replace(/\/+$/, "")
+
+	<!-- url_server='http://cambridgekeydata.org' -->
+	url = starter
 	url += get_word()
 	cmd=get_cmd()
+	console.log('view!',word,cmd);
 	url+='?view='+cmd
 
-	cache_vars();
+
 
 	var words = $('#analyze_word').val().replace(' ','');
 	var x_vec_str = $('#x_vec_str').val();
@@ -49,7 +55,7 @@ function get_self_url(starter='/word/') {
 
 	console.log(words,x_vec_str,y_vec_str,x_vec,y_vec,'!!!!!!!');
 
-	var params={'view':cmd}
+	var params={} //'view':cmd}
 	if(cmd == 'custom') {
 		if (Boolean(x_vec_str)) { params['x_vec_str']=x_vec_str } else if (Boolean(x_vec)) { params['x_vec']=x_vec }
 		if (Boolean(y_vec_str)) { params['y_vec_str']=y_vec_str } else if (Boolean(y_vec)) { params['y_vec']=y_vec }
@@ -64,9 +70,15 @@ function get_self_url(starter='/word/') {
 	console.log('params!!',params);
 	let u = new URLSearchParams(params).toString();
 
-	url = window.location.href.split(starter)[0] + starter + words + '?' + u;
-	url=url.replace(starter+"/",starter);
-	return url;
+	if(u){ url+='&'+u; }
+
+	//alert(url);
+	//url=url.replace(starter+"/",starter);
+	URL = url_server + url;
+	URL_prefix_split = URL.split('://')
+	url2 = URL_prefix_split[0] + '://' + (URL_prefix_split[1].replace('//','/'))
+	//alert(url2);
+	return url2;
 }
 
 
@@ -83,70 +95,70 @@ function split_words(_words) {
 	// console.log('split_words',_words,_words_l);
 	return _words_l;
 }
-// 
-// function desc_neighb(_word,_period) {
-// 	$.getJSON('/static/data/db/neighborhoods/COHA_30yr/'+_word+'.json', function(json) {
-// 		//_period=_period.toString() + '-' + (parseInt(_period) + 30).toString()
-// 		////console.log(json);
-// 		////console.log(_period, json[_period] );
-// 		for (pwi=0; pwi<json.length; pwi++) {
-// 			period=json[pwi][0];
-// 			pwords=json[pwi][1];
-//
-// 			pstr1 = pwords.slice(0,5).join(", ")
-// 			pstr2 = pwords.slice(5,10).join(", ")
-// 			pstr3 = pwords.slice(10,15).join(", ")
-//
-// 			if (period.startsWith(_period.toString())) {
-// 				////console.log(period,_period,pwords);
-// 				//return pwords;
-//
-// 				d3v4.selectAll('.neighb_window').remove();
-//
-// 				svg.append("text")
-// 						.attr("transform",
-// 									"translate(" + ((width/2) - 200) + " ," +
-// 																 (height + margin.top - 25 ) + ")")
-// 						.style("text-anchor", "left")
-// 						.attr('class','neighb_window')
-// 						.style('text-align', 'left')
-// 						.attr('fill',color)
-// 						.text(pstr3);
-//
-// 				svg.append("text")
-// 						.attr("transform",
-// 									"translate(" + ((width/2) - 200) + " ," +
-// 																 (height + margin.top - 50 ) + ")")
-// 						.style("text-anchor", "left")
-// 						.attr('class','neighb_window')
-// 						.style('text-align', 'left')
-// 						.attr('fill',color)
-// 						.text(pstr2);
-//
-// 						svg.append("text")
-// 								.attr("transform",
-// 											"translate(" + ((width/2) - 200) + " ," +
-// 																		 (height + margin.top - 75 ) + ")")
-// 								.style("text-anchor", "left")
-// 								.attr('class','neighb_window')
-// 								.style('text-align', 'left')
-// 								.attr('fill',color)
-// 								.text(pstr1);
-//
-// 						svg.append("text")
-// 								.attr("transform",
-// 											"translate(" + ((width/2) - 200) + " ," +
-// 																		 (height + margin.top - 100 ) + ")")
-// 								.style("text-anchor", "left")
-// 								.attr('class','neighb_window')
-// 								.text(_word +"("+period+")")
-// 								.style('text-align', 'left')
-// 								.attr('fill',color)
-// 								.attr('style','font-weight: bold;');
-// 			}
-// 		}
-// 	});
-// }
+
+function desc_neighb(_word,_period) {
+	$.getJSON('/static/data/db/neighborhoods/COHA_30yr/'+_word+'.json', function(json) {
+		//_period=_period.toString() + '-' + (parseInt(_period) + 30).toString()
+		////console.log(json);
+		////console.log(_period, json[_period] );
+		for (pwi=0; pwi<json.length; pwi++) {
+			period=json[pwi][0];
+			pwords=json[pwi][1];
+
+			pstr1 = pwords.slice(0,5).join(", ")
+			pstr2 = pwords.slice(5,10).join(", ")
+			pstr3 = pwords.slice(10,15).join(", ")
+
+			if (period.startsWith(_period.toString())) {
+				////console.log(period,_period,pwords);
+				//return pwords;
+
+				d3v4.selectAll('.neighb_window').remove();
+
+				svg.append("text")
+						.attr("transform",
+									"translate(" + ((width/2) - 200) + " ," +
+																 (height + margin.top - 25 ) + ")")
+						.style("text-anchor", "left")
+						.attr('class','neighb_window')
+						.style('text-align', 'left')
+						.attr('fill',color)
+						.text(pstr3);
+
+				svg.append("text")
+						.attr("transform",
+									"translate(" + ((width/2) - 200) + " ," +
+																 (height + margin.top - 50 ) + ")")
+						.style("text-anchor", "left")
+						.attr('class','neighb_window')
+						.style('text-align', 'left')
+						.attr('fill',color)
+						.text(pstr2);
+
+						svg.append("text")
+								.attr("transform",
+											"translate(" + ((width/2) - 200) + " ," +
+																		 (height + margin.top - 75 ) + ")")
+								.style("text-anchor", "left")
+								.attr('class','neighb_window')
+								.style('text-align', 'left')
+								.attr('fill',color)
+								.text(pstr1);
+
+						svg.append("text")
+								.attr("transform",
+											"translate(" + ((width/2) - 200) + " ," +
+																		 (height + margin.top - 100 ) + ")")
+								.style("text-anchor", "left")
+								.attr('class','neighb_window')
+								.text(_word +"("+period+")")
+								.style('text-align', 'left')
+								.attr('fill',color)
+								.attr('style','font-weight: bold;');
+			}
+		}
+	});
+}
 
 function average_vecs(WordVecs) {
 	WordVecAvgs=[];
@@ -340,7 +352,6 @@ function resize_spaces(width) {
 			make_linegraph_spaces(words,
 			y_col = "Tangible (MT) <> Intangible (MT)",
 			x_col = "Negative (HGI) <> Positive (HGI)",
-			// x_col = "Vice (HGI) <> Virtue (HGI)",
 			div_id="Panel1", x_min=-4, x_max=4,y_min=-4,y_max=4,y_mid=0,x_mid=0,
 			sp_title="Abstraction vs. judgment",
 			 y_col_name = "<< Concrete | Abstract >>",
@@ -355,21 +366,6 @@ function resize_spaces(width) {
 		}
 
 
-
-
-$('#analyze_word_button').click(function() {
-	analyze_word();
-});
-
-$('#analyze_word').bind("enterKey",function(e){
-	analyze_word();
-});
-$('#analyze_word').keyup(function(e){
-    if(e.keyCode == 13)
-    {
-        $(this).trigger("enterKey");
-    }
-});
 
 function sleep(milliseconds) {
   const date = Date.now();
@@ -449,18 +445,18 @@ function analyze_word(view = undefined, points='average') {
 
 
 
+
 	words = word.split(',');
-	//
-	//
-	// cache_vars();
-	// window.history.pushState({state: "dummyState"}, "Title", get_self_url());
+
+
+
+
+
+
+
 
 	if (view==undefined) { var view=get_cmd(); }
-	//console.log(view,'-->',word);
-
-
 		all_periods = use_all_periods()
-		// console.log('all_periods',all_periods);
 		if (view == "spaces") {
 			$('#custom_spaces').hide();
 			$('#custom_opts_table').hide();
@@ -488,46 +484,8 @@ function analyze_word(view = undefined, points='average') {
 
 		cache_vars();
 		var url=get_self_url();
+		console.log('URL??',url);
 		window.history.pushState({state: "dummyState"}, "Title", url);
 		$('#footer').html('<hr/><small>[Cite: <a href="'+url+'" target="_blank">'+url+'</a></small>]')
 
 }
-
-
-
-
-
-
-
-
-
-
-$(document).ready(function() {
-
-
-
-	var OPTS = {{OPTS|tojson}};
-	var GLOBAL_OPTS = {{GLOBAL_OPTS|tojson}};
-	// OPTS = {{OPTS|tojson}};
-	console.log('INCOMING GLOBAL_OPTS:',GLOBAL_OPTS);
-	console.log('INCOMING OPTS:',OPTS);
-	for (var key in GLOBAL_OPTS) {
-    //console.log(arr_jq_TabContents[key]);
-		localStorage.setItem(key,GLOBAL_OPTS[key]);
-	}
-	for (var key in OPTS) {
-    //console.log(arr_jq_TabContents[key]);
-		localStorage.setItem(key,OPTS[key]);
-	}
-	analyze_word();
-
-});
-
-// $('.tick').attr('fill','silver');
-
-
-
-//analyze_word('data');
-
-
-console.log('done');
