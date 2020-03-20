@@ -1,6 +1,6 @@
 import os
 
-DEFAULT_WORD = "data,information,knowledge"
+DEFAULT_WORD = "data,work,knowledge"
 
 from flask import Flask, request, render_template, redirect, url_for
 
